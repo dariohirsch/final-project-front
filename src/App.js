@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom"
 import Navigation from "./components/Navbar"
 import HomePage from "./pages/HomePage"
 import ProjectListPage from "./pages/ProjectListPage"
+import CompetitionsPage from "./pages/CompetitionsPage"
 import ProjectDetailsPage from "./pages/ProjectDetailsPage"
 import EditProjectPage from "./pages/EditProjectPage"
 
@@ -21,7 +22,7 @@ function App() {
 					<Route exact path="/" component={HomePage} />
 
 					{/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
-					<PrivateRoute exact path="/projects" component={ProjectListPage} />
+					<PrivateRoute exact path="/competitions" component={CompetitionsPage} />
 					<PrivateRoute exact path="/projects/:id" component={ProjectDetailsPage} />
 					<PrivateRoute exact path="/projects/edit/:id" component={EditProjectPage} />
 

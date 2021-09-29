@@ -9,10 +9,11 @@ function Navigation() {
 
 	return (
 		<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+			{console.log(user)}
 			<Container>
 				<Navbar.Brand href="/">BetFriends</Navbar.Brand>
 				<Nav className="me-auto">
-					<Nav.Link href="#pricing">Upcoming matches</Nav.Link>
+					<Nav.Link href="/competitions">Upcoming matches</Nav.Link>
 					<NavDropdown title="Leagues" id="collasible-nav-dropdown">
 						<NavDropdown.Item href="#action/3.1">View all leagues</NavDropdown.Item>
 						<NavDropdown.Item href="#action/3.2">My leagues</NavDropdown.Item>
@@ -22,10 +23,11 @@ function Navigation() {
 				{isLoggedIn ? (
 					<>
 						<Navbar.Toggle aria-controls="responsive-navbar-nav" />
-						<Navbar.Collapse id="responsive-navbar-nav">
-							<Button onClick={logOutUser}>Logout</Button>
-							<span>{user.name}</span>
-						</Navbar.Collapse>
+						{/* <Navbar.Collapse id="responsive-navbar-nav"> */}
+						<Button onClick={logOutUser}>Logout</Button>
+						<span>{user?.name}</span>
+						<span>Coins: {user?.coins}</span>
+						{/* </Navbar.Collapse> */}
 					</>
 				) : (
 					<>

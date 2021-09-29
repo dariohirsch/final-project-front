@@ -8,23 +8,28 @@ function SignupPage(props) {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [name, setName] = useState("")
+	const [coins, setCoins] = useState(1000)
+	const [openLeagues, setOpenLeagues] = useState("")
 	const [errorMessage, setErrorMessage] = useState(undefined)
 
 	const handleEmail = (e) => setEmail(e.target.value)
 	const handlePassword = (e) => setPassword(e.target.value)
 	const handleName = (e) => setName(e.target.value)
+	const handleCoins = (e) => setCoins(e.target.value)
+	const handleOpenLeagues = (e) => setOpenLeagues(e.target.value)
 
 	const handleSignupSubmit = (e) => {
 		e.preventDefault()
 		// Create an object representing the request body
-		const requestBody = { email, password, name }
+		const requestBody = { email, password, name, coins, openLeagues }
 
 		// Make an axios request to the API
 		// If POST request is successful redirect to login page
 		// If the request resolves with an error, set the error message in the state
 		axios
 			.post(`${API_URL}/auth/signup`, requestBody)
-			.then((response) => props.history.push("/login"))
+			.then((response) => console.log(response)) //props.history.push("/login"))
+
 			.catch((error) => {
 				const errorDescription = error.response.data.message
 				setErrorMessage(errorDescription)
@@ -44,6 +49,8 @@ function SignupPage(props) {
 
 				<label>Name:</label>
 				<input type="text" name="name" value={name} onChange={handleName} />
+				<input type="number" hidden name="coins" value={1000} onChange={handleCoins} />
+				{/* <input type="hidden" name="openLeagues" value={[]} onChange={handleOpenLeagues} /> */}
 
 				<button type="submit">Sign Up</button>
 			</form>
