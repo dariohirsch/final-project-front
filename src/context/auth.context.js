@@ -10,6 +10,7 @@ function AuthProviderWrapper(props) {
 	const [user, setUser] = useState(null)
 
 	const verifyStoredToken = () => {
+		console.log("verifystoredtoken", user)
 		// Get the stored token from the localStorage
 		const storedToken = localStorage.getItem("authToken")
 
@@ -38,7 +39,10 @@ function AuthProviderWrapper(props) {
 	}
 
 	const logInUser = (token) => {
+		debugger
+		console.log("loginuser", user)
 		localStorage.setItem("authToken", token.token)
+
 		setUser(token.user)
 		verifyStoredToken()
 
@@ -56,6 +60,7 @@ function AuthProviderWrapper(props) {
 
 		// Update the state variables
 		setIsLoggedIn(false)
+
 		setUser(null)
 	}
 

@@ -3,15 +3,20 @@ import { Switch, Route } from "react-router-dom"
 import Navigation from "./components/Navbar"
 import HomePage from "./pages/HomePage"
 import ProjectListPage from "./pages/ProjectListPage"
-import CompetitionsPage from "./pages/CompetitionsPage"
+import CompetitionsPage from "./pages/Competitions/CompetitionsPage"
 import ProjectDetailsPage from "./pages/ProjectDetailsPage"
 import EditProjectPage from "./pages/EditProjectPage"
-
 import SignupPage from "./pages/SignupPage"
 import LoginPage from "./pages/LoginPage"
 import PrivateRoute from "./components/PrivateRoute" // <== IMPORT
 import AnonRoute from "./components/AnonRoute" // <== IMPORT
 import { Container } from "react-bootstrap"
+import MatchesCompetitions from "./pages/MatchesCompetitions"
+import MatchOdds from "./pages/MatchOdds"
+import HomeBetPage from "./pages/BetPages/HomeBetPage"
+import DrawBetPage from "./pages/BetPages/DrawBetPage"
+import AwayBetPage from "./pages/BetPages/AwayBetPage"
+import CreateLeague from "./pages/CreateLeague"
 
 function App() {
 	return (
@@ -20,14 +25,19 @@ function App() {
 			<Container>
 				<Switch>
 					<Route exact path="/" component={HomePage} />
-
-					{/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
-					<PrivateRoute exact path="/competitions" component={CompetitionsPage} />
-					<PrivateRoute exact path="/projects/:id" component={ProjectDetailsPage} />
-					<PrivateRoute exact path="/projects/edit/:id" component={EditProjectPage} />
-
 					<AnonRoute exact path="/signup" component={SignupPage} />
 					<AnonRoute exact path="/login" component={LoginPage} />
+
+					<Route exact path="/competitions" component={CompetitionsPage} />
+					<Route exact path="/create-league" component={CreateLeague} />
+					<Route path="/competitions/matchodds/:id/bethome" component={HomeBetPage} />
+					<Route path="/competitions/matchodds/:id/betdraw" component={DrawBetPage} />
+					<Route path="/competitions/matchodds/:id/betaway" component={AwayBetPage} />
+					<Route path="/competitions/matchodds/:id" component={MatchOdds} />
+
+					<div className="col-4">
+						<Route path="/competitions/:id" component={MatchesCompetitions} />
+					</div>
 				</Switch>
 			</Container>
 		</div>
