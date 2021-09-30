@@ -40,3 +40,20 @@
 		transform: rotate(360deg);
 	}
 }
+
+/* all leagues pages classes */
+.red-text {
+	color: red;
+}
+
+.info-league-container {
+	border: 1px solid black;
+	margin: 0.5rem;
+	padding: 0.5rem;
+	width: 24rem;
+}
+
+.leagues-container {
+	display: flex;
+	flex-wrap: wrap;
+}

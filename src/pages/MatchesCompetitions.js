@@ -38,6 +38,7 @@ function MatchesCompetitions(props) {
 				match.data.id = id
 				console.log("match", match)
 				setMatch(match.data)
+				// console.log("estooooooooooo", match.data)
 				setLoadingDetails(false)
 			})
 			.catch((error) => {
@@ -46,8 +47,8 @@ function MatchesCompetitions(props) {
 	}
 
 	if (loadingDetails === false) {
-		homeTeam = match.results[0].others[30].sp.half_time_result_total_goals.odds[0].team
-		awayTeam = match.results[0].others[30].sp.half_time_result_total_goals.odds[1].team
+		// homeTeam = match.results[0].others[30].sp.half_time_result_total_goals.odds[0].team
+		// awayTeam = match.results[0].others[30].sp.half_time_result_total_goals.odds[1].team
 		homeCuote = match.results[0].main.sp.full_time_result.odds[0].odds
 		drawCuote = match.results[0].main.sp.full_time_result.odds[1].odds
 		awayCuote = match.results[0].main.sp.full_time_result.odds[2].odds
@@ -72,7 +73,6 @@ function MatchesCompetitions(props) {
 									<Button
 										onClick={() => {
 											showDetails(match.id)
-											//history.push(`/competitions/matchodds/${match.id}`)
 										}}
 										variant="primary"
 									>

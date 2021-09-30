@@ -31,13 +31,13 @@ function App() {
 
 					<Route exact path="/competitions" component={CompetitionsPage} />
 					<Route exact path="/create-league" component={CreateLeague} />
+					{/* <Route path="/competitions/matchodds/:id" component={MatchOdds} /> */}
 					<Route path="/competitions/matchodds/:id/bethome" component={HomeBetPage} />
 					<Route path="/all-leagues" component={AllLeagues} />
 					<Route path="/competitions/matchodds/:id/betdraw" component={DrawBetPage} />
 					<Route path="/competitions/matchodds/:id/betaway" component={AwayBetPage} />
-					<Route path="/competitions/matchodds/:id" component={MatchOdds} />
 
-					{/* <Route path="/competitions/:id" component={MatchesCompetitions} /> */}
+					<Route path="/competitions/:id" component={MatchesCompetitions} />
 				</Switch>
 			</Container>
 		</div>
