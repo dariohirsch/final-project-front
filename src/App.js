@@ -16,7 +16,8 @@ import MatchOdds from "./pages/MatchOdds"
 import HomeBetPage from "./pages/BetPages/HomeBetPage"
 import DrawBetPage from "./pages/BetPages/DrawBetPage"
 import AwayBetPage from "./pages/BetPages/AwayBetPage"
-import CreateLeague from "./pages/CreateLeague"
+import CreateLeague from "./pages/Leagues/CreateLeague"
+import AllLeagues from "./pages/Leagues/AllLeagues"
 
 function App() {
 	return (
@@ -31,13 +32,12 @@ function App() {
 					<Route exact path="/competitions" component={CompetitionsPage} />
 					<Route exact path="/create-league" component={CreateLeague} />
 					<Route path="/competitions/matchodds/:id/bethome" component={HomeBetPage} />
+					<Route path="/all-leagues" component={AllLeagues} />
 					<Route path="/competitions/matchodds/:id/betdraw" component={DrawBetPage} />
 					<Route path="/competitions/matchodds/:id/betaway" component={AwayBetPage} />
 					<Route path="/competitions/matchodds/:id" component={MatchOdds} />
 
-					<div className="col-4">
-						<Route path="/competitions/:id" component={MatchesCompetitions} />
-					</div>
+					{/* <Route path="/competitions/:id" component={MatchesCompetitions} /> */}
 				</Switch>
 			</Container>
 		</div>

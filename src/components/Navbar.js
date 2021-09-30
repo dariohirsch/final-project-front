@@ -13,7 +13,13 @@ function Navigation() {
 		<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
 			{console.log(user)}
 			<Container>
-				<Navbar.Brand href="/">BetFriends</Navbar.Brand>
+				<Nav.Link
+					onClick={() => {
+						history.push("/")
+					}}
+				>
+					BetFriends
+				</Nav.Link>
 				<Nav className="me-auto">
 					<Nav.Link
 						onClick={() => {
@@ -23,7 +29,13 @@ function Navigation() {
 						Upcoming matches
 					</Nav.Link>
 					<NavDropdown title="Leagues" id="collasible-nav-dropdown">
-						<NavDropdown.Item href="#action/3.1">View all leagues</NavDropdown.Item>
+						<NavDropdown.Item
+							onClick={() => {
+								history.push("/all-leagues")
+							}}
+						>
+							View all leagues
+						</NavDropdown.Item>
 						<NavDropdown.Item href="#action/3.2">My leagues</NavDropdown.Item>
 						<NavDropdown.Item
 							onClick={() => {

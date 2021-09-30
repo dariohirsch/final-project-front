@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { Link } from "react-router-dom"
-import { AuthContext } from "./../context/auth.context"
+import { AuthContext } from "../../context/auth.context"
 import React from "react"
 import axios from "axios"
 import { useState } from "react"
@@ -10,10 +10,11 @@ function CreateLeague() {
 	const { isLoggedIn } = useContext(AuthContext)
 	const [name, setName] = useState("")
 	const [inscriptionPrice, setInscriptionPrice] = useState("")
-	const [maxParticipants, setmaxParticipants] = useState("")
+	const [maxParticipants, setMaxParticipants] = useState("")
 	const [accessCode, setAccessCode] = useState("")
 	const [participants, setParticipants] = useState("")
-	const [pot, setPot] = useState("")
+	const [pot, setPot] = useState(0)
+	const API_URL = process.env.REACT_APP_API_URL
 
 	const history = useHistory()
 
@@ -26,7 +27,7 @@ function CreateLeague() {
 	}
 
 	const handlemaxParticipantsChange = (e) => {
-		setmaxParticipants(e.target.value)
+		setMaxParticipants(e.target.value)
 	}
 
 	const handlesetAccessCodeChange = (e) => {
@@ -44,7 +45,7 @@ function CreateLeague() {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
-		let objectToSubmit = {
+		let newLeague = {
 			name: name,
 			inscriptionPrice: inscriptionPrice,
 			maxParticipants: maxParticipants,
@@ -53,15 +54,15 @@ function CreateLeague() {
 			pot: pot,
 		}
 
-		console.log(objectToSubmit)
+		console.log("front", newLeague)
 
-		axios.post(URL, objectToSubmit).then(() => {
+		axios.post(`${API_URL}/newleague`, newLeague).then(() => {
 			setName("")
 			setInscriptionPrice("")
-			setmaxParticipants("")
+			setMaxParticipants("")
 			setAccessCode("")
 			setParticipants("")
-			setPot("")
+			setPot(0)
 
 			history.push("/")
 		})
@@ -71,7 +72,7 @@ function CreateLeague() {
 		<div>
 			{isLoggedIn ? (
 				<div className="AddApartmentPage">
-					<h3>Add New Beer</h3>
+					<h3>Create new league</h3>
 					<form onSubmit={handleSubmit}>
 						<input type="text" name="name" value={name} onChange={handleNameLineChange} placeholder=" league name" />
 						<input type="number" name="inscriptionPrice" value={inscriptionPrice} onChange={handleInscriptionPrice} placeholder=" inscription price" />
