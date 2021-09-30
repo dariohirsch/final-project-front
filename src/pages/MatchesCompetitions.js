@@ -2,12 +2,14 @@ import React from "react"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Card, Button } from "react-bootstrap"
+import { useHistory } from "react-router-dom"
 
 function MatchesCompetitions(props) {
 	const competitionId = props.match.params.id
 
 	const [matches, setCompetition] = useState([])
 	const [loading, setLoading] = useState(true)
+	const history = useHistory()
 
 	useEffect(() => {
 		axios.get(`https://api.b365api.com/v1/bet365/upcoming?sport_id=1&token=98118-e5AVNY35CKcRQ3&league_id=${competitionId}`).then((response) => {
@@ -42,7 +44,12 @@ function MatchesCompetitions(props) {
 									<Card.Text>{match.home.name}</Card.Text>
 									<Card.Text>{match.away.name}</Card.Text>
 									<Card.Text>{match.id}</Card.Text>
-									<Button href={`/competitions/matchodds/${match.id}`} variant="primary">
+									<Button
+										onClick={() => {
+											history.push(`/competitions/matchodds/${match.id}`)
+										}}
+										variant="primary"
+									>
 										Go odds details
 									</Button>
 								</Card.Body>

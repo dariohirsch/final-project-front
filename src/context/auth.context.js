@@ -29,6 +29,7 @@ function AuthProviderWrapper(props) {
 				.catch((error) => {
 					// If the server sends an error response (invalid token) ❌
 					setIsLoggedIn(false)
+					console.log("verify null")
 					setUser(null)
 					setIsLoading(false)
 				})
@@ -39,7 +40,6 @@ function AuthProviderWrapper(props) {
 	}
 
 	const logInUser = (token) => {
-		debugger
 		console.log("loginuser", user)
 		localStorage.setItem("authToken", token.token)
 
@@ -60,7 +60,7 @@ function AuthProviderWrapper(props) {
 
 		// Update the state variables
 		setIsLoggedIn(false)
-
+		console.log("logout user")
 		setUser(null)
 	}
 

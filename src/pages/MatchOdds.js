@@ -65,7 +65,7 @@ function MatchOdds(props) {
 						<div></div>
 					) : (
 						<h4>
-							To see all the cuotes, please <Link to="">log in</Link> or <Link to="">sign up </Link>
+							To see all the cuotes, please <Link to="/login">log in</Link> or <Link to="signup">sign up </Link>
 						</h4>
 					)}
 				</form>
