@@ -1,6 +1,6 @@
 import { useContext } from "react" // <== IMPORT
 import { AuthContext } from "./../context/auth.context" // <== IMPORT
-import { Container, Nav, Navbar, NavDropdown, Button } from "react-bootstrap"
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap"
 import { useHistory } from "react-router-dom"
 
 function Navigation() {
@@ -56,11 +56,12 @@ function Navigation() {
 					<>
 						<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 						{/* <Navbar.Collapse id="responsive-navbar-nav"> */}
-						<Button onClick={logOutUser} href="/">
+						<span className="nav-text">Welcome {user?.name}</span>
+						<span className="nav-text">Coins {user?.coins}</span>
+						<button className="log-out" onClick={logOutUser} href="/">
 							Logout
-						</Button>
-						<span>{user?.name}</span>
-						<span>Coins: {user?.coins}</span>
+						</button>
+
 						{/* </Navbar.Collapse> */}
 					</>
 				) : (

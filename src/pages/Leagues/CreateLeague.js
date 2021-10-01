@@ -73,7 +73,7 @@ function CreateLeague() {
 			{isLoggedIn ? (
 				<div className="AddApartmentPage">
 					<h3>Create new league</h3>
-					<form onSubmit={handleSubmit}>
+					<form className="form-create-league" onSubmit={handleSubmit}>
 						<input type="text" name="name" value={name} onChange={handleNameLineChange} placeholder=" league name" />
 						<input type="number" name="inscriptionPrice" value={inscriptionPrice} onChange={handleInscriptionPrice} placeholder=" inscription price" />
 						<input type="number" name="maxParticipants" value={maxParticipants} onChange={handlemaxParticipantsChange} placeholder="max participants" />
@@ -81,7 +81,9 @@ function CreateLeague() {
 						<input type="text" hidden name="participants" value={participants} onChange={handlesetParticipantsChange} />
 						<input type="number" hidden name="pot" value={pot} onChange={handlepotChange} />
 
-						<button type="submit">SUBMIT</button>
+						<button className="bet-button" type="submit">
+							SUBMIT
+						</button>
 					</form>
 				</div>
 			) : (

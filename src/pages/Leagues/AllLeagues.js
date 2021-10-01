@@ -7,9 +7,8 @@ import axios from "axios"
 function AllLeagues() {
 	const API_URL = process.env.REACT_APP_API_URL
 	const [leagues, setLeagues] = useState([])
-	const { isLoggedIn, user, logOutUser, setUser } = useContext(AuthContext)
-	const [userId, setUserId] = useState("")
-	const [leagueId, setLeagueId] = useState()
+	const { isLoggedIn, user, setUser } = useContext(AuthContext)
+
 	const history = useHistory()
 
 	useEffect(() => {
@@ -58,7 +57,7 @@ function AllLeagues() {
 								Participants: {league.participants.length} / {league.maxParticipants}
 								{/* {league.participants.length === league.maxParticipants ? <p>League is full. Try another one!</p> : <p></p>} */}
 							</h5>
-							<h5>Award: {league.pot}</h5>
+							<h5>Award: {league.participants.length * league.inscriptionPrice}</h5>
 							{user.coins < league.inscriptionPrice ? (
 								<p className="red-text">You don't have enaugth coins</p>
 							) : isLoggedIn && league.participants.length !== league.maxParticipants ? (

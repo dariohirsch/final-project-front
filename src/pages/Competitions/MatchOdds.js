@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { Card, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { useContext } from "react"
-import { AuthContext } from "./../context/auth.context"
+import { AuthContext } from "../../context/auth.context"
 
 function MatchOdds(props) {
 	const matchId = props.match.params.id

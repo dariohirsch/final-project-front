@@ -2,19 +2,19 @@ import React from "react"
 import axios from "axios"
 import { useEffect, useState, useContext } from "react"
 import { Card, Button } from "react-bootstrap"
-import { useHistory } from "react-router-dom"
-import { AuthContext } from "./../context/auth.context"
+import { AuthContext } from "../../context/auth.context"
 import { Link } from "react-router-dom"
 
-function MatchesCompetitions(props) {
-	const competitionId = props.match.params.id
+function MatchesCompetitionsBet(props) {
+	console.log("las props", props)
+	const leagueId = props.match.params.id
+	const competitionId = props.match.params.compId
 
 	const [match, setMatch] = useState([])
 	const [loadingDetails, setLoadingDetails] = useState(true)
 	const [matches, setCompetition] = useState([])
 	const [loading, setLoading] = useState(true)
-	const { isLoggedIn, isLoading } = useContext(AuthContext)
-	const history = useHistory()
+	const { isLoggedIn } = useContext(AuthContext)
 
 	let homeTeam
 	let awayTeam
@@ -33,7 +33,7 @@ function MatchesCompetitions(props) {
 	useEffect(() => {
 		axios.get(`https://api.b365api.com/v1/bet365/upcoming?sport_id=1&token=98118-e5AVNY35CKcRQ3&league_id=${competitionId}`).then((response) => {
 			let matchesList = response.data.results
-			console.log(matchesList)
+			// console.log(matchesList)
 			setCompetition(matchesList)
 			setLoading(false)
 		})
@@ -117,7 +117,7 @@ function MatchesCompetitions(props) {
 								<h5>Full time result</h5>
 								<h6>{homeTeam}</h6>
 								{isLoggedIn ? (
-									<Link to={`/competitions/matchodds/${match.id}/bethome`}>
+									<Link to={`/competitions/${leagueId}/matchodds/${match.id}/bethome`}>
 										<p>{homeCuote}</p>
 									</Link>
 								) : (
@@ -126,7 +126,7 @@ function MatchesCompetitions(props) {
 
 								<h6>Draw</h6>
 								{isLoggedIn ? (
-									<Link to={`/competitions/matchodds/${match.id}/betdraw`}>
+									<Link to={`/competitions/${leagueId}/matchodds/${match.id}/betdraw`}>
 										<p>{drawCuote}</p>
 									</Link>
 								) : (
@@ -135,7 +135,7 @@ function MatchesCompetitions(props) {
 
 								<h6>{awayTeam}</h6>
 								{isLoggedIn ? (
-									<Link to={`/competitions/matchodds/${match.id}/betaway`}>
+									<Link to={`/competitions/${leagueId}/matchodds/${match.id}/betaway`}>
 										<p>{awayCuote}</p>
 									</Link>
 								) : (
@@ -146,7 +146,7 @@ function MatchesCompetitions(props) {
 									{overHeader} {overName} goals
 								</h6>
 								{isLoggedIn ? (
-									<Link to={`/competitions/matchodds/${match.id}/betaway`}>
+									<Link to={`/competitions/${leagueId}/matchodds/${match.id}/betaway`}>
 										<p>{overCuote}</p>
 									</Link>
 								) : (
@@ -157,7 +157,7 @@ function MatchesCompetitions(props) {
 									{underHeader} {underName} goals
 								</h6>
 								{isLoggedIn ? (
-									<Link to={`/competitions/matchodds/${match.id}/betaway`}>
+									<Link to={`/competitions/${leagueId}/matchodds/${match.id}/betaway`}>
 										<p>{underCuote}</p>
 									</Link>
 								) : (
@@ -180,4 +180,4 @@ function MatchesCompetitions(props) {
 	}
 }
 
-export default MatchesCompetitions
+export default MatchesCompetitionsBet

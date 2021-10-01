@@ -1,18 +1,23 @@
 import React from "react"
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
 
 function DrawBetPage(props) {
-	const matchId = props.match.params.id
+	const matchId = props.match.params.matchId
+	const leagueId = props.match.params.id
+
+	const API_URL = process.env.REACT_APP_API_URL
 
 	const [matchs, setMatchs] = useState([])
 	const [loading, setLoading] = useState(true)
+	const history = useHistory()
+	const [coinsAmount, setCoinsAmount] = useState(0)
 
 	let drawCuote
 	let namesMatch
 	let homeTeam
 	let awayTeam
-
 	let nameTeams
 
 	useEffect(() => {
@@ -33,24 +38,49 @@ function DrawBetPage(props) {
 		nameTeams = namesMatch.split(" - ", 2)
 		homeTeam = nameTeams[0]
 		awayTeam = nameTeams[1]
+		let coinsPotencials = coinsAmount * drawCuote
+
+		const handleCoinsAmountChange = (e) => {
+			setCoinsAmount(e.target.value)
+		}
+
+		const handleSubmitForm = (e) => {
+			// console.log(e.target[2].value)
+			e.preventDefault()
+
+			let betInfo = {
+				betAmount: parseInt(coinsAmount),
+				coinsToWin: coinsPotencials,
+				betDraw: "betDraw",
+				leagueId: leagueId,
+			}
+
+			console.log(betInfo)
+
+			axios
+				.post(`${API_URL}/join-league`, betInfo)
+
+				.then(() => {
+					history.push(`/league/${e.target[3].value}`) //PONER LUEGO UN LINK A LA PAGINA DE CADA LIGA
+				})
+		}
 
 		return (
 			<div className="singleMatch">
 				<h1>
 					{homeTeam} vs {awayTeam}
 				</h1>
-				<form>
-					{/* <Card style={{ width: "18rem" }}> */}
 
-					<h5>You are betting for: Draw</h5>
+				{/* <Card style={{ width: "18rem" }}> */}
 
-					<p>Coute: {drawCuote}</p>
+				<h5>You are betting for: Draw</h5>
 
-					{/* <h5>Empate</h5>
-					<p>{drawCuote}</p>
-					<h5>{awayTeam}</h5>
-					<p>{awayCuote}</p> */}
-					{/* </Card> */}
+				<p>Coute: {drawCuote}</p>
+				<form onSubmit={handleSubmitForm}>
+					{/* <input hidden name="league._id" value={league._id}></input> */}
+					<input type="number" name="coinsAmount" value={coinsAmount} onChange={handleCoinsAmountChange} placeholder="coins to bet" />
+					<h6> Potencial winnings {coinsPotencials} </h6>
+					<button type="submit">Bet in your League</button>
 				</form>
 			</div>
 		)

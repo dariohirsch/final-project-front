@@ -42,6 +42,21 @@
 	}
 }
 
+/* create league */
+.form-create-league {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: teal;
+	padding: 1rem;
+	background-image: url("./boca fans.webp");
+}
+
+.form-create-league input {
+	margin: 1.5rem;
+	width: 13rem;
+}
+
 /* all leagues pages classes */
 .red-text {
 	color: red;
@@ -64,4 +79,32 @@
 .matchOddsTitle {
 	margin-top: 2rem;
 	margin-bottom: 2rem;
+}
+
+/* nav styles */
+
+.nav-text {
+	margin: 0 1rem 0 1rem;
+}
+.log-out {
+	border: none;
+	background-color: rgb(189, 61, 61);
+	color: white;
+	opacity: 0.7;
+}
+
+.log-out:hover {
+	opacity: 1;
+}
+
+/* bet */
+.bet-button {
+	border: none;
+	margin: 0.5rem;
+	padding: 0.5rem;
+	opacity: 0.7;
+}
+
+.bet-button:hover {
+	opacity: 1;
 }
