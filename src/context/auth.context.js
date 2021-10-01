@@ -68,7 +68,7 @@ function AuthProviderWrapper(props) {
 		verifyStoredToken()
 	}, [])
 
-	return <AuthContext.Provider value={{ isLoggedIn, isLoading, user, logInUser, logOutUser }}>{props.children}</AuthContext.Provider>
+	return <AuthContext.Provider value={{ isLoggedIn, isLoading, user, logInUser, logOutUser, setUser }}>{props.children}</AuthContext.Provider>
 }
 
 export { AuthProviderWrapper, AuthContext }

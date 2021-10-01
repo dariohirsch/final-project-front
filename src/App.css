@@ -1,5 +1,6 @@
 .App {
 	text-align: center;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .App-logo {
@@ -56,4 +57,11 @@
 .leagues-container {
 	display: flex;
 	flex-wrap: wrap;
+}
+
+/* matches competitions page */
+
+.matchOddsTitle {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
 }

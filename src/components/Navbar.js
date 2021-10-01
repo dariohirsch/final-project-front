@@ -1,7 +1,7 @@
 import { useContext } from "react" // <== IMPORT
 import { AuthContext } from "./../context/auth.context" // <== IMPORT
 import { Container, Nav, Navbar, NavDropdown, Button } from "react-bootstrap"
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 function Navigation() {
 	// Subscribe to the AuthContext to gain access to
@@ -36,7 +36,13 @@ function Navigation() {
 						>
 							View all leagues
 						</NavDropdown.Item>
-						<NavDropdown.Item href="#action/3.2">My leagues</NavDropdown.Item>
+						<NavDropdown.Item
+							onClick={() => {
+								history.push("/my-leagues")
+							}}
+						>
+							My leagues
+						</NavDropdown.Item>
 						<NavDropdown.Item
 							onClick={() => {
 								history.push("/create-league")

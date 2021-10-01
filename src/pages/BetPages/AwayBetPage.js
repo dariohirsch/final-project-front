@@ -10,6 +10,14 @@ function AwayBetPage(props) {
 	const [matchs, setMatchs] = useState([])
 	const [loading, setLoading] = useState(true)
 
+	let homeCuote
+	let drawCuote
+	let namesMatch
+	let homeTeam
+	let awayTeam
+	let awayCuote
+	let nameTeams
+
 	useEffect(() => {
 		axios.get(`https://api.b365api.com/v3/bet365/prematch?token=98118-e5AVNY35CKcRQ3&FI=${matchId}`).then((matchsApi) => {
 			setMatchs(matchsApi.data)
@@ -20,11 +28,15 @@ function AwayBetPage(props) {
 	if (loading === true) {
 		return <p>loading</p>
 	} else {
-		let homeTeam = matchs.results[0].others[30].sp.half_time_result_total_goals.odds[0].team
-		let awayTeam = matchs.results[0].others[30].sp.half_time_result_total_goals.odds[1].team
-		let homeCuote = matchs.results[0].main.sp.full_time_result.odds[0].odds
-		let drawCuote = matchs.results[0].main.sp.full_time_result.odds[1].odds
-		let awayCuote = matchs.results[0].main.sp.full_time_result.odds[2].odds
+		// homeCuote = matchs.results[0].main.sp.full_time_result.odds[0].odds
+		// drawCuote = matchs.results[0].main.sp.full_time_result.odds[1].odds
+		awayCuote = matchs.results[0].main.sp.full_time_result.odds[2].odds
+		namesMatch = matchs.results[0].main.sp.half_time_full_time.odds[2].name
+
+		nameTeams = namesMatch.split(" - ", 2)
+		homeTeam = nameTeams[0]
+		awayTeam = nameTeams[1]
+
 		return (
 			<div className="singleMatch">
 				<h1>
