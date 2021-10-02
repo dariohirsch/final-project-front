@@ -52,7 +52,9 @@ function SignupPage(props) {
 				<input type="number" hidden name="coins" value={1000} onChange={handleCoins} />
 				{/* <input type="hidden" name="openLeagues" value={[]} onChange={handleOpenLeagues} /> */}
 
-				<button type="submit">Sign Up</button>
+				<button type="submit" class="button-log-sign">
+					Sign Up
+				</button>
 			</form>
 
 			{errorMessage && <p className="error-message">{errorMessage}</p>}

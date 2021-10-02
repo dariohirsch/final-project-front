@@ -1,7 +1,8 @@
 import React from "react"
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useHistory } from "react-router-dom"
+import { AuthContext } from "../../context/auth.context"
 
 function AwayBetPage(props) {
 	const matchId = props.match.params.matchId
@@ -13,6 +14,8 @@ function AwayBetPage(props) {
 	const [loading, setLoading] = useState(true)
 	const history = useHistory()
 	const [coinsAmount, setCoinsAmount] = useState(0)
+	const [userInLeague, setUserInLeague] = useState(0)
+	const { user } = useContext(AuthContext)
 
 	let awayCuote
 	let namesMatch
@@ -20,10 +23,21 @@ function AwayBetPage(props) {
 	let awayTeam
 	let nameTeams
 
+	let userId = user._id
+
 	useEffect(() => {
 		axios.get(`https://api.b365api.com/v3/bet365/prematch?token=98735-GtE0VpaDW6UXg3&FI=${matchId}`).then((matchsApi) => {
 			setMatchs(matchsApi.data)
 			setLoading(false)
+
+			let coinsInLeagueUser = {
+				userId: userId,
+				leagueId: leagueId,
+			}
+
+			axios.post(`${API_URL}/get-userinleague`, coinsInLeagueUser).then((userInLeague) => {
+				setUserInLeague(userInLeague.data[0])
+			})
 		})
 	}, [])
 
@@ -39,6 +53,9 @@ function AwayBetPage(props) {
 		homeTeam = nameTeams[0]
 		awayTeam = nameTeams[1]
 		let coinsPotencials = coinsAmount * awayCuote
+		let coinsInLeague = userInLeague.coinsInLeague
+		let coinsInLeagueUpdate = coinsInLeague - coinsAmount
+		//console.log(`SOY COINS IN LEAGUE` , coinsInLeagueUpdate)
 
 		const handleCoinsAmountChange = (e) => {
 			setCoinsAmount(e.target.value)
@@ -49,19 +66,23 @@ function AwayBetPage(props) {
 			e.preventDefault()
 
 			let betInfo = {
+				betMatch: `${homeTeam} vs ${awayTeam}`,
 				betAmount: parseInt(coinsAmount),
 				coinsToWin: coinsPotencials,
-				betAway: "betAway",
+				betSigne: "betAway",
 				leagueId: leagueId,
+				matchId: matchId,
+				userId: userId,
+				coinsInLeague: coinsInLeagueUpdate,
 			}
 
-			console.log(betInfo)
+			//console.log(betInfo)
 
 			axios
-				.post(`${API_URL}/join-league`, betInfo)
+				.post(`${API_URL}/place-bet`, betInfo)
 
 				.then(() => {
-					history.push(`/league/${e.target[3].value}`) //PONER LUEGO UN LINK A LA PAGINA DE CADA LIGA
+					history.push(`/`) //PONER LUEGO UN LINK A LA PAGINA DE CADA LIGA
 				})
 		}
 
@@ -78,9 +99,16 @@ function AwayBetPage(props) {
 				<p>Coute: {awayCuote}</p>
 				<form onSubmit={handleSubmitForm}>
 					{/* <input hidden name="league._id" value={league._id}></input> */}
-					<input type="number" name="coinsAmount" value={coinsAmount} onChange={handleCoinsAmountChange} placeholder=" coins to bet" />
+					<input type="number" name="coinsAmount" value={coinsAmount} onChange={handleCoinsAmountChange} placeholder="coins to bet" />
 					<h6> Potencial winnings {coinsPotencials} </h6>
-					<button type="submit">Bet in your League</button>
+					{coinsInLeagueUpdate < 0 ? (
+						<h1 className="red-text"> You don't have enought coins </h1>
+					) : (
+						<h1>
+							{" "}
+							<button type="submit">Bet in your League</button>{" "}
+						</h1>
+					)}
 				</form>
 			</div>
 		)

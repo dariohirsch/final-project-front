@@ -32,6 +32,11 @@ function MyLeagues() {
 
 		history.push(`/competitions/bet/${e.target[0].value}`)
 	}
+	const handleSubmitFormToDetails = (e) => {
+		e.preventDefault()
+
+		history.push(`/league/${e.target[0].value}`)
+	}
 
 	return (
 		<div>
@@ -45,6 +50,12 @@ function MyLeagues() {
 							</h4>
 
 							<h4>Pot: {league.participants.length * league.inscriptionPrice}</h4>
+							<form onSubmit={handleSubmitFormToDetails}>
+								<input hidden name="league._id" value={league._id}></input>
+								<button className="bet-button" type="submit">
+									ENTER
+								</button>
+							</form>
 							<form onSubmit={handleSubmitForm}>
 								<input hidden name="league._id" value={league._id}></input>
 								<button className="bet-button" type="submit">

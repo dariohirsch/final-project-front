@@ -48,7 +48,7 @@ function App() {
 					<PrivateRoute exact path="/my-leagues" component={MyLeagues} />
 					<Route
 						exact
-						path="/league/:name"
+						path="/league/:id"
 						render={(routeProps) => {
 							return <LeagueDetails {...routeProps} />
 						}}
