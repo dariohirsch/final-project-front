@@ -6,10 +6,12 @@ import { useHistory } from "react-router-dom"
 
 function MyLeagues() {
 	const API_URL = process.env.REACT_APP_API_URL
-	const { user } = useContext(AuthContext)
+	const { user, userInLeague } = useContext(AuthContext)
 	const [myLeagues, setMyLeagues] = useState([])
 
 	const history = useHistory()
+
+	console.log("user in league", userInLeague)
 
 	const getMyLeagues = () => {
 		let userId = user._id

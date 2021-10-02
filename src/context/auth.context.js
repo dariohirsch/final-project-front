@@ -9,6 +9,8 @@ function AuthProviderWrapper(props) {
 	const [isLoading, setIsLoading] = useState(true)
 	const [user, setUser] = useState(null)
 
+	// const [userInLeague, setUserInLeague] = useState(null)
+
 	const verifyStoredToken = () => {
 		console.log("verifystoredtoken", user)
 		// Get the stored token from the localStorage
@@ -39,8 +41,14 @@ function AuthProviderWrapper(props) {
 		}
 	}
 
+	// setTimeOut(() => {const getUserInLeague = () => {
+	// 	let userToSearch = user
+	// 	console.log("usertosearch", userToSearch)
+	// 	axios.post(`${API_URL}/get-userinleague`, { userToSearch }).then((response) => console.log(response))
+	// },1000)
+
 	const logInUser = (token) => {
-		console.log("loginuser", user)
+		console.log("loginuser", token)
 		localStorage.setItem("authToken", token.token)
 
 		setUser(token.user)
@@ -66,6 +74,7 @@ function AuthProviderWrapper(props) {
 
 	useEffect(() => {
 		verifyStoredToken()
+		// getUserInLeague()
 	}, [])
 
 	return <AuthContext.Provider value={{ isLoggedIn, isLoading, user, logInUser, logOutUser, setUser }}>{props.children}</AuthContext.Provider>

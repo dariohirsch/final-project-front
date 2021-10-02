@@ -27,9 +27,11 @@ function MatchesCompetitions(props) {
 	let underCuote
 	let namesMatch
 	let nameTeams
+	let dateMatch
+	let dateMatchString
 
 	useEffect(() => {
-		axios.get(`https://api.b365api.com/v1/bet365/upcoming?sport_id=1&token=98118-e5AVNY35CKcRQ3&league_id=${competitionId}`).then((response) => {
+		axios.get(`https://api.b365api.com/v1/bet365/upcoming?sport_id=1&token=98735-GtE0VpaDW6UXg3&league_id=${competitionId}`).then((response) => {
 			let matchesList = response.data.results
 
 			setCompetition(matchesList)
@@ -39,7 +41,7 @@ function MatchesCompetitions(props) {
 
 	const showDetails = (id) => {
 		axios
-			.get(`https://api.b365api.com/v3/bet365/prematch?token=98118-e5AVNY35CKcRQ3&FI=${id}`)
+			.get(`https://api.b365api.com/v3/bet365/prematch?token=98735-GtE0VpaDW6UXg3&FI=${id}`)
 			.then((match) => {
 				match.data.id = id
 
@@ -74,7 +76,9 @@ function MatchesCompetitions(props) {
 	if (loading === true) {
 		return <p>loading</p>
 	} else {
-		// console.log(cuota.results);
+		dateMatch = new Date(matches[0].time * 1000)
+
+		dateMatchString = dateMatch.toLocaleString()
 		return (
 			<div className="row">
 				<div className="matcheslist col-6" style={{ overflow: "scroll", maxHeight: "80vh" }}>
@@ -86,7 +90,8 @@ function MatchesCompetitions(props) {
 									<Card.Title>Match: </Card.Title>
 									<Card.Text>{match.home.name}</Card.Text>
 									<Card.Text>{match.away.name}</Card.Text>
-									<Card.Text>{match.id}</Card.Text>
+
+									<Card.Text>{new Date(match.time * 1000).toLocaleString()}</Card.Text>
 									<Button
 										onClick={() => {
 											showDetails(match.id)

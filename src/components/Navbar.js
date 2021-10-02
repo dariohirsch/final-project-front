@@ -14,6 +14,7 @@ function Navigation() {
 			{console.log(user)}
 			<Container>
 				<Nav.Link
+					className="nav-buttons"
 					onClick={() => {
 						history.push("/")
 					}}
@@ -22,13 +23,14 @@ function Navigation() {
 				</Nav.Link>
 				<Nav className="me-auto">
 					<Nav.Link
+						className="nav-buttons"
 						onClick={() => {
 							history.push("/competitions")
 						}}
 					>
 						Upcoming matches
 					</Nav.Link>
-					<NavDropdown title="Leagues" id="collasible-nav-dropdown">
+					<NavDropdown className="nav-buttons" title="Leagues" id="collasible-nav-dropdown">
 						<NavDropdown.Item
 							onClick={() => {
 								history.push("/all-leagues")

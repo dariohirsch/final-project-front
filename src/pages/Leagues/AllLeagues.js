@@ -66,7 +66,9 @@ function AllLeagues() {
 									<input hidden name="league._id" value={league._id}></input>
 									<input hidden name="inscriptionPrice" value={league.inscriptionPrice}></input>
 									<input hidden name="leagueName" value={league.name}></input>
-									<button type="submit">Join League</button>
+									<button type="submit" className="join-league-button">
+										Join League
+									</button>
 								</form>
 							) : league.participants.length === league.maxParticipants ? (
 								<p className="red-text">League is full. Try another one!</p>
