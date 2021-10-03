@@ -76,9 +76,9 @@ function MatchesCompetitions(props) {
 	if (loading === true) {
 		return <p>loading</p>
 	} else {
-		dateMatch = new Date(matches[0].time * 1000)
+		// dateMatch = new Date(matches[0].time * 1000)
 
-		dateMatchString = dateMatch.toLocaleString()
+		// dateMatchString = dateMatch.toLocaleString()
 		return (
 			<div className="row">
 				<div className="matcheslist col-6" style={{ overflow: "scroll", maxHeight: "80vh" }}>

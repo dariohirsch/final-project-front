@@ -3,6 +3,7 @@ import axios from "axios"
 import { useEffect, useState, useContext } from "react"
 import { useHistory } from "react-router-dom"
 import { AuthContext } from "../../context/auth.context"
+import { Nav, Navbar, Container } from "react-bootstrap"
 
 function HomeBetPage(props) {
 	const matchId = props.match.params.matchId
@@ -16,6 +17,7 @@ function HomeBetPage(props) {
 	const [coinsAmount, setCoinsAmount] = useState(0)
 	const [userInLeague, setUserInLeague] = useState(0)
 	const { user } = useContext(AuthContext)
+	const [userLeague, setUserLeague] = useState("")
 
 	let homeCuote
 	let namesMatch
@@ -37,6 +39,10 @@ function HomeBetPage(props) {
 
 			axios.post(`${API_URL}/get-userinleague`, coinsInLeagueUser).then((userInLeague) => {
 				setUserInLeague(userInLeague.data[0])
+			})
+
+			axios.post(`${API_URL}/get-userleague`, coinsInLeagueUser).then((userLeague) => {
+				setUserLeague(userLeague.data[0])
 			})
 		})
 	}, [])
@@ -87,30 +93,49 @@ function HomeBetPage(props) {
 		}
 
 		return (
-			<div className="singleMatch">
-				<h1>
-					{homeTeam} vs {awayTeam}
-				</h1>
+			<>
+				<Navbar bg="dark" variant="dark" expand="lg">
+					<Container>
+						<Navbar.Toggle aria-controls="basic-navbar-nav" />
+						<Navbar.Collapse id="basic-navbar-nav">
+							<Nav className="me-auto">
+								<Nav.Link className="navInLeague"> League: {userLeague.name}</Nav.Link>
+								<Nav.Link className="navInLeague2" href="#home">
+									Clasification
+								</Nav.Link>
+								<Nav.Link className="navInLeague2" href="#home">
+									My bets
+								</Nav.Link>
+								<Nav.Link className="navInLeague2"> Coins: {userInLeague.coinsInLeague}</Nav.Link>
+							</Nav>
+						</Navbar.Collapse>
+					</Container>
+				</Navbar>
+				<div className="singleMatch">
+					<h1>
+						{homeTeam} vs {awayTeam}
+					</h1>
 
-				{/* <Card style={{ width: "18rem" }}> */}
+					{/* <Card style={{ width: "18rem" }}> */}
 
-				<h5>You are betting for: {homeTeam}</h5>
+					<h5>You are betting for: {homeTeam}</h5>
 
-				<p>Coute: {homeCuote}</p>
-				<form onSubmit={handleSubmitForm}>
-					{/* <input hidden name="league._id" value={league._id}></input> */}
-					<input type="number" name="coinsAmount" value={coinsAmount} onChange={handleCoinsAmountChange} placeholder="coins to bet" />
-					<h6> Potencial winnings {coinsPotencials} </h6>
-					{coinsInLeagueUpdate < 0 ? (
-						<h1 className="red-text"> You don't have enought coins </h1>
-					) : (
-						<h1>
-							{" "}
-							<button type="submit">Bet in your League</button>{" "}
-						</h1>
-					)}
-				</form>
-			</div>
+					<p>Coute: {homeCuote}</p>
+					<form onSubmit={handleSubmitForm}>
+						{/* <input hidden name="league._id" value={league._id}></input> */}
+						<input type="number" name="coinsAmount" value={coinsAmount} onChange={handleCoinsAmountChange} placeholder="coins to bet" />
+						<h6> Potencial winnings {coinsPotencials} </h6>
+						{coinsInLeagueUpdate < 0 ? (
+							<h1 className="red-text"> You don't have enought coins </h1>
+						) : (
+							<h1>
+								{" "}
+								<button type="submit">Bet in your League</button>{" "}
+							</h1>
+						)}
+					</form>
+				</div>
+			</>
 		)
 	}
 }

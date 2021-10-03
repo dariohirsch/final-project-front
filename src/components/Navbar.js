@@ -59,7 +59,7 @@ function Navigation() {
 						<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 						{/* <Navbar.Collapse id="responsive-navbar-nav"> */}
 						<span className="nav-text">Welcome {user?.name}</span>
-						<span className="nav-text">Coins {user?.coins}</span>
+						<span className="nav-text"> {user?.coins}€</span>
 						<button className="log-out" onClick={logOutUser} href="/">
 							Logout
 						</button>

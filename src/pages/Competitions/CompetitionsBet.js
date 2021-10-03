@@ -5,19 +5,59 @@ import laliga from "./assets/laliga.jpeg"
 import seriea from "./assets/calcio.jpeg"
 import premier from "./assets/premier.jpeg"
 import bundesleague from "./assets/bundesliga.jpeg"
+import { Nav, Navbar, Container } from "react-bootstrap"
+import axios from "axios"
+import { useEffect, useContext, useState } from "react"
+import { AuthContext } from "../../context/auth.context"
 
 function CompetitionsBet(props) {
 	const leagueId = props.match.params.id
-	// console.log("leagueID??????", leagueId)
+	const { user } = useContext(AuthContext)
+	const [userInLeague, setUserInLeague] = useState(0)
+	const [userLeague, setUserLeague] = useState("")
+	const API_URL = process.env.REACT_APP_API_URL
 
 	let franceId = 10041100
 	let spainId = 10041110
 	let italyId = 10041315
 	let englandId = 10041282
 	let germanyId = 10041095
+	let userId = user._id
+
+	useEffect(() => {
+		let coinsInLeagueUser = {
+			userId: userId,
+			leagueId: leagueId,
+		}
+
+		axios.post(`${API_URL}/get-userleague`, coinsInLeagueUser).then((userLeague) => {
+			setUserLeague(userLeague.data[0])
+		})
+
+		axios.post(`${API_URL}/get-userinleague`, coinsInLeagueUser).then((userInLeague) => {
+			setUserInLeague(userInLeague.data[0])
+		})
+	}, [])
 
 	return (
 		<>
+			<Navbar bg="dark" variant="dark" expand="lg">
+				<Container>
+					<Navbar.Toggle aria-controls="basic-navbar-nav" />
+					<Navbar.Collapse id="basic-navbar-nav">
+						<Nav className="me-auto">
+							<Nav.Link className="navInLeague"> League: {userLeague.name}</Nav.Link>
+							<Nav.Link className="navInLeague2" href="#home">
+								Clasification
+							</Nav.Link>
+							<Nav.Link className="navInLeague2" href="#home">
+								My bets
+							</Nav.Link>
+							<Nav.Link className="navInLeague2"> Coins: {userInLeague.coinsInLeague}</Nav.Link>
+						</Nav>
+					</Navbar.Collapse>
+				</Container>
+			</Navbar>
 			<div className=" competitionsContainer">
 				<Link to={`/competitions/bet/${leagueId}/${franceId}`}>
 					<img ClassName="fotosLigas" src={league1} alt="league1"></img>
