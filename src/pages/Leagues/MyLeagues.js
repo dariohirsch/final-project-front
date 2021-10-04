@@ -11,8 +11,6 @@ function MyLeagues() {
 
 	const history = useHistory()
 
-	console.log("user in league", userInLeague)
-
 	const getMyLeagues = () => {
 		let userId = user._id
 

@@ -50,7 +50,6 @@ function SignupPage(props) {
 				<label>Name:</label>
 				<input type="text" name="name" value={name} onChange={handleName} />
 				<input type="number" hidden name="coins" value={1000} onChange={handleCoins} />
-				{/* <input type="hidden" name="openLeagues" value={[]} onChange={handleOpenLeagues} /> */}
 
 				<button type="submit" class="button-log-sign">
 					Sign Up

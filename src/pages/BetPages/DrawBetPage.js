@@ -8,7 +8,7 @@ import { Nav, Navbar, Container } from "react-bootstrap"
 function DrawBetPage(props) {
 	const matchId = props.match.params.matchId
 	const leagueId = props.match.params.id
-
+	const matchTime = props.match.params.matchTime
 	const API_URL = process.env.REACT_APP_API_URL
 
 	const [matchs, setMatchs] = useState([])
@@ -74,12 +74,14 @@ function DrawBetPage(props) {
 			let betInfo = {
 				betMatch: `${homeTeam} vs ${awayTeam}`,
 				betAmount: parseInt(coinsAmount),
-				coinsToWin: coinsPotencials,
+				coinsToWin: parseInt(coinsPotencials),
 				betSigne: "betDraw",
 				leagueId: leagueId,
 				matchId: matchId,
+				matchTime: matchTime,
 				userId: userId,
 				coinsInLeague: coinsInLeagueUpdate,
+				condition: "open",
 			}
 
 			//console.log(betInfo)

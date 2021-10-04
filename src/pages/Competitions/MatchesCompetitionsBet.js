@@ -6,7 +6,6 @@ import { AuthContext } from "../../context/auth.context"
 import { Link } from "react-router-dom"
 
 function MatchesCompetitionsBet(props) {
-	console.log("las props", props)
 	const leagueId = props.match.params.id
 	const competitionId = props.match.params.compId
 
@@ -17,6 +16,7 @@ function MatchesCompetitionsBet(props) {
 	const { isLoggedIn } = useContext(AuthContext)
 	const [userInLeague, setUserInLeague] = useState(0)
 	const [userLeague, setUserLeague] = useState("")
+	const [matchTime, setMatchTime] = useState(0)
 	const API_URL = process.env.REACT_APP_API_URL
 	const { user } = useContext(AuthContext)
 
@@ -139,6 +139,7 @@ function MatchesCompetitionsBet(props) {
 										<Button
 											onClick={() => {
 												showDetails(match.id)
+												setMatchTime(match.time)
 											}}
 											variant="primary"
 										>
@@ -160,7 +161,7 @@ function MatchesCompetitionsBet(props) {
 									<h5>Full time result</h5>
 									<h6>{homeTeam}</h6>
 									{isLoggedIn ? (
-										<Link to={`/competitions/${leagueId}/matchodds/${match.id}/bethome`}>
+										<Link to={`/competitions/${leagueId}/matchodds/${match.id}/bethome/${matchTime}`}>
 											<p>{homeCuote}</p>
 										</Link>
 									) : (
@@ -169,7 +170,7 @@ function MatchesCompetitionsBet(props) {
 
 									<h6>Draw</h6>
 									{isLoggedIn ? (
-										<Link to={`/competitions/${leagueId}/matchodds/${match.id}/betdraw`}>
+										<Link to={`/competitions/${leagueId}/matchodds/${match.id}/betdraw/${matchTime}`}>
 											<p>{drawCuote}</p>
 										</Link>
 									) : (
@@ -178,7 +179,7 @@ function MatchesCompetitionsBet(props) {
 
 									<h6>{awayTeam}</h6>
 									{isLoggedIn ? (
-										<Link to={`/competitions/${leagueId}/matchodds/${match.id}/betaway`}>
+										<Link to={`/competitions/${leagueId}/matchodds/${match.id}/betaway/${matchTime}`}>
 											<p>{awayCuote}</p>
 										</Link>
 									) : (

@@ -14,6 +14,7 @@ function CreateLeague() {
 	const [accessCode, setAccessCode] = useState("")
 	const [participants, setParticipants] = useState("")
 	const [pot, setPot] = useState(0)
+	const [condition, setCondition] = useState("open")
 	const API_URL = process.env.REACT_APP_API_URL
 
 	const history = useHistory()
@@ -42,6 +43,10 @@ function CreateLeague() {
 		setPot(e.target.value)
 	}
 
+	const handleConditionChange = (e) => {
+		setPot(e.target.value)
+	}
+
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
@@ -52,9 +57,8 @@ function CreateLeague() {
 			accessCode: accessCode,
 			participants: participants,
 			pot: pot,
+			condition: condition,
 		}
-
-		console.log("front", newLeague)
 
 		axios.post(`${API_URL}/newleague`, newLeague).then(() => {
 			setName("")
@@ -63,6 +67,7 @@ function CreateLeague() {
 			setAccessCode("")
 			setParticipants("")
 			setPot(0)
+			setCondition("open")
 
 			history.push("/")
 		})
@@ -80,6 +85,7 @@ function CreateLeague() {
 						<input type="text" name="accessCode" value={accessCode} onChange={handlesetAccessCodeChange} placeholder=" access code (optional)" />
 						<input type="text" hidden name="participants" value={participants} onChange={handlesetParticipantsChange} />
 						<input type="number" hidden name="pot" value={pot} onChange={handlepotChange} />
+						<input type="number" hidden name="condition" value={condition} onChange={handleConditionChange} />
 
 						<button className="bet-button" type="submit">
 							SUBMIT

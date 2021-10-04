@@ -18,6 +18,7 @@ import LeagueDetails from "./pages/Leagues/LeagueDetails"
 import CompetitionsBet from "./pages/Competitions/CompetitionsBet"
 import PrivateRoute from "./components/PrivateRoute"
 import MatchesCompetitionsBet from "./pages/Competitions/MatchesCompetitionsBet"
+import BetResults from "./pages/BetPages/BetResultsPage"
 
 function App() {
 	return (
@@ -53,33 +54,33 @@ function App() {
 							return <LeagueDetails {...routeProps} />
 						}}
 					/>
-					{/* <Route path="/competitions/matchodds/:id" component={MatchOdds} /> */}
 
 					<Route
 						exact
-						path="/competitions/:id/matchodds/:matchId/bethome"
+						path="/competitions/:id/matchodds/:matchId/bethome/:matchTime"
 						render={(routeProps) => {
 							return <HomeBetPage {...routeProps} />
 						}}
 					/>
 					<Route
 						exact
-						path="/competitions/:id/matchodds/:matchId/betDraw"
+						path="/competitions/:id/matchodds/:matchId/betDraw/:matchTime"
 						render={(routeProps) => {
 							return <DrawBetPage {...routeProps} />
 						}}
 					/>
 					<Route
 						exact
-						path="/competitions/:id/matchodds/:matchId/betAway"
+						path="/competitions/:id/matchodds/:matchId/betAway/:matchTime"
 						render={(routeProps) => {
 							return <AwayBetPage {...routeProps} />
 						}}
 					/>
 
-					<Route path="/all-leagues" component={AllLeagues} />
+					<PrivateRoute path="/all-leagues" component={AllLeagues} />
 
 					<Route path="/competitions/:id" component={MatchesCompetitions} />
+					<Route exact path="/bet-results" component={BetResults} />
 				</Switch>
 			</Container>
 		</div>

@@ -1,6 +1,8 @@
 import { useContext } from "react"
 import { AuthContext } from "./../context/auth.context"
 import betFriends from "./images/friends-bet.jpeg"
+import PrivPub from "./images/pub-priv.jpeg"
+import Virtual from "./images/real-virtual.jpeg"
 
 import { useHistory } from "react-router-dom"
 
@@ -90,7 +92,7 @@ function HomePage() {
 									</div>
 								</div>
 								<div class="carousel-item">
-									<img src={betFriends} class="d-block w-100" alt="..." />
+									<img src={Virtual} class="d-block w-100" alt="..." />
 									<div class="carousel-caption d-none d-md-block">
 										<h5>
 											<b>Play with real money or virtual coins</b>
@@ -99,7 +101,7 @@ function HomePage() {
 									</div>
 								</div>
 								<div class="carousel-item">
-									<img src={betFriends} class="d-block w-100" alt="..." />
+									<img src={PrivPub} class="d-block w-100" alt="..." />
 									<div class="carousel-caption d-none d-md-block">
 										<h5>
 											<b>Join a private or public league</b>

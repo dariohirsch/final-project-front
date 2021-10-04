@@ -8,6 +8,7 @@ import { Nav, Navbar, Container } from "react-bootstrap"
 function AwayBetPage(props) {
 	const matchId = props.match.params.matchId
 	const leagueId = props.match.params.id
+	const matchTime = props.match.params.matchTime
 
 	const API_URL = process.env.REACT_APP_API_URL
 
@@ -74,12 +75,14 @@ function AwayBetPage(props) {
 			let betInfo = {
 				betMatch: `${homeTeam} vs ${awayTeam}`,
 				betAmount: parseInt(coinsAmount),
-				coinsToWin: coinsPotencials,
+				coinsToWin: parseInt(coinsPotencials),
 				betSigne: "betAway",
 				leagueId: leagueId,
 				matchId: matchId,
+				matchTime: matchTime,
 				userId: userId,
 				coinsInLeague: coinsInLeagueUpdate,
+				condition: "open",
 			}
 
 			//console.log(betInfo)
