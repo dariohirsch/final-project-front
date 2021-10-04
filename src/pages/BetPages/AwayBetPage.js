@@ -83,6 +83,7 @@ function AwayBetPage(props) {
 				userId: userId,
 				coinsInLeague: coinsInLeagueUpdate,
 				condition: "open",
+				status: ''
 			}
 
 			//console.log(betInfo)

@@ -6,7 +6,7 @@ import axios from "axios"
 function BetResults() {
 	const API_URL = process.env.REACT_APP_API_URL
 	const [bets, setBets] = useState([])
-	const [betResult, setBetResult] = useState([])
+
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
@@ -34,19 +34,31 @@ function BetResults() {
 			// to make the call to the API only with the games that are finished
 
 			bets.map((bet) => {
-				if (bet.matchTime + 9000 > actualTimeToEpoch) {
+				if (bet.matchTime + 9000 < actualTimeToEpoch) {
 					let betMatchId = bet.matchId
 					axios.get(`https://api.b365api.com/v1/bet365/result?token=98735-GtE0VpaDW6UXg3&event_id=${betMatchId}`).then((response) => {
-						console.log("response", response)
-						let homeGoals = response.data.results[0].home.name
-						// let awayGoals = response.data.results.scores[2].away
+						let homeGoals = response.data.results[0].scores[2].home
+						let awayGoals = response.data.results[0].scores[2].away
+						let result = ""
+						if (homeGoals === awayGoals) {
+							result = "betDraw"
+						} else if (homeGoals > awayGoals) {
+							result = "betHome"
+						} else {
+							result = "betAway"
+						}
 
-						// setBetResult(response.data.results).then(() => {
-						// 	let homeGoals = response.data.results.scores[2].home
-						// 	let awayGoals = betResult.scores[2].away
-
-						console.log("home goals", homeGoals)
-						// console.log("away goals", awayGoals)
+						if (result === bet.betSigne) {
+							let betId = {
+								betId: bet._id,
+							}
+							axios.post(`${API_URL}/bet-check-status-win`, betId).then((response) => {})
+						} else {
+							let betId = {
+								betId: bet._id,
+							}
+							axios.post(`${API_URL}/bet-check-status-lost`, betId).then((response) => {})
+						}
 					})
 				}
 				return "hola"

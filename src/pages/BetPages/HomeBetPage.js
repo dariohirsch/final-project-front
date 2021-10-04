@@ -83,6 +83,7 @@ function HomeBetPage(props) {
 				userId: userId,
 				coinsInLeague: coinsInLeagueUpdate,
 				condition: "open",
+				status: "",
 			}
 
 			//console.log(betInfo)

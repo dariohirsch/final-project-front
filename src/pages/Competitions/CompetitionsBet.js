@@ -17,7 +17,7 @@ function CompetitionsBet(props) {
 	const [userLeague, setUserLeague] = useState("")
 	const API_URL = process.env.REACT_APP_API_URL
 
-	let franceId = 10041406
+	let franceId = 10070454
 	let spainId = 10041110
 	let italyId = 10041315
 	let englandId = 10041282
