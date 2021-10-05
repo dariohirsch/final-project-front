@@ -9,6 +9,7 @@ function DrawBetPage(props) {
 	const matchId = props.match.params.matchId
 	const leagueId = props.match.params.id
 	const matchTime = props.match.params.matchTime
+
 	const API_URL = process.env.REACT_APP_API_URL
 
 	const [matchs, setMatchs] = useState([])
@@ -28,7 +29,7 @@ function DrawBetPage(props) {
 	let userId = user._id
 
 	useEffect(() => {
-		axios.get(`https://api.b365api.com/v3/bet365/prematch?token=98735-GtE0VpaDW6UXg3&FI=${matchId}`).then((matchsApi) => {
+		axios.get(`https://api.b365api.com/v3/bet365/prematch?token=99095-GEZxtGrJVsIYLq&FI=${matchId}`).then((matchsApi) => {
 			setMatchs(matchsApi.data)
 			setLoading(false)
 
@@ -75,14 +76,15 @@ function DrawBetPage(props) {
 				betMatch: `${homeTeam} vs ${awayTeam}`,
 				betAmount: parseInt(coinsAmount),
 				coinsToWin: parseInt(coinsPotencials),
-				betSigne: "betDraw",
+				betSigne: "betAway",
 				leagueId: leagueId,
 				matchId: matchId,
 				matchTime: matchTime,
 				userId: userId,
 				coinsInLeague: coinsInLeagueUpdate,
+				inPlayCoins: userInLeague.inPlayCoins + parseInt(coinsAmount),
 				condition: "open",
-				status: ''
+				status: "",
 			}
 
 			//console.log(betInfo)

@@ -53,8 +53,8 @@ function LeagueDetails(props) {
 									return (
 										<tr>
 											<td>{user.userId?.name}</td>
-											<td>{user.realCoinsInLeague}</td>
 											<td>{user.coinsInLeague}</td>
+											<td>{user.inPlayCoins}</td>
 										</tr>
 									)
 								})}

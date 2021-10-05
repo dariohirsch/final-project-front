@@ -31,7 +31,7 @@ function MatchesCompetitions(props) {
 	let dateMatchString
 
 	useEffect(() => {
-		axios.get(`https://api.b365api.com/v1/bet365/upcoming?sport_id=1&token=98735-GtE0VpaDW6UXg3&league_id=${competitionId}`).then((response) => {
+		axios.get(`https://api.b365api.com/v1/bet365/upcoming?sport_id=1&token=99095-GEZxtGrJVsIYLq&league_id=${competitionId}`).then((response) => {
 			let matchesList = response.data.results
 
 			setCompetition(matchesList)
@@ -41,7 +41,7 @@ function MatchesCompetitions(props) {
 
 	const showDetails = (id) => {
 		axios
-			.get(`https://api.b365api.com/v3/bet365/prematch?token=98735-GtE0VpaDW6UXg3&FI=${id}`)
+			.get(`https://api.b365api.com/v3/bet365/prematch?token=99095-GEZxtGrJVsIYLq&FI=${id}`)
 			.then((match) => {
 				match.data.id = id
 

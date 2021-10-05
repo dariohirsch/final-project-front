@@ -2,6 +2,7 @@ import { useState, useContext } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { AuthContext } from "./../context/auth.context"
+import BetResults from "./BetPages/BetResultsPage"
 
 const API_URL = process.env.REACT_APP_API_URL
 
@@ -37,6 +38,7 @@ function LoginPage(props) {
 
 	return (
 		<div className="LoginPage">
+			<BetResults />
 			<h1>Login</h1>
 
 			<form onSubmit={handleLoginSubmit}>

@@ -29,7 +29,7 @@ function HomeBetPage(props) {
 	let userId = user._id
 
 	useEffect(() => {
-		axios.get(`https://api.b365api.com/v3/bet365/prematch?token=98735-GtE0VpaDW6UXg3&FI=${matchId}`).then((matchsApi) => {
+		axios.get(`https://api.b365api.com/v3/bet365/prematch?token=99095-GEZxtGrJVsIYLq&FI=${matchId}`).then((matchsApi) => {
 			setMatchs(matchsApi.data)
 			setLoading(false)
 
@@ -82,6 +82,7 @@ function HomeBetPage(props) {
 				matchTime: matchTime,
 				userId: userId,
 				coinsInLeague: coinsInLeagueUpdate,
+				inPlayCoins: userInLeague.inPlayCoins + parseInt(coinsAmount),
 				condition: "open",
 				status: "",
 			}
