@@ -15,6 +15,8 @@ function CreateLeague() {
 	const [participants, setParticipants] = useState("")
 	const [pot, setPot] = useState(0)
 	const [condition, setCondition] = useState("open")
+	const [finishDate, setFinishDate] = useState("")
+
 	const API_URL = process.env.REACT_APP_API_URL
 
 	const history = useHistory()
@@ -47,6 +49,16 @@ function CreateLeague() {
 		setPot(e.target.value)
 	}
 
+	// const handleFinishDate = (e) => {
+	const actualDateEpoch = new Date() / 1000
+	// 	setFinishDate(e.target.value)
+	// 	// setFinishDate(e.target.value * 86400 + actualDateEpoch)
+	// }
+
+	const handleFinishDate = (e) => {
+		setFinishDate(e.target.value)
+	}
+
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
@@ -58,6 +70,7 @@ function CreateLeague() {
 			participants: participants,
 			pot: pot,
 			condition: condition,
+			finishDate: parseInt(finishDate) * 86400 + actualDateEpoch,
 		}
 
 		axios.post(`${API_URL}/newleague`, newLeague).then(() => {
@@ -68,6 +81,7 @@ function CreateLeague() {
 			setParticipants("")
 			setPot(0)
 			setCondition("open")
+			setFinishDate("")
 
 			history.push("/")
 		})
@@ -82,6 +96,10 @@ function CreateLeague() {
 						<input type="text" name="name" value={name} onChange={handleNameLineChange} placeholder=" league name" />
 						<input type="number" name="inscriptionPrice" value={inscriptionPrice} onChange={handleInscriptionPrice} placeholder=" inscription price" />
 						<input type="number" name="maxParticipants" value={maxParticipants} onChange={handlemaxParticipantsChange} placeholder="max participants" />
+
+						<input type="number" name="finishDate" value={finishDate} onChange={handleFinishDate} placeholder="duration (days)" />
+						{/* <input type="number" hidden name="duration" value={finishDateInput} onChange={handleFinishDate} placeholder="duration (days)" /> */}
+
 						<input type="text" name="accessCode" value={accessCode} onChange={handlesetAccessCodeChange} placeholder=" access code (optional)" />
 						<input type="text" hidden name="participants" value={participants} onChange={handlesetParticipantsChange} />
 						<input type="number" hidden name="pot" value={pot} onChange={handlepotChange} />

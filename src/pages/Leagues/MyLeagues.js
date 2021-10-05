@@ -54,12 +54,17 @@ function MyLeagues() {
 									ENTER
 								</button>
 							</form>
-							<form onSubmit={handleSubmitForm}>
-								<input hidden name="league._id" value={league._id}></input>
-								<button className="bet-button" type="submit">
-									BET
-								</button>
-							</form>
+
+							{league.finishDate < new Date() / 1000 ? (
+								<p className="red-text">League has finished. Try another one!</p>
+							) : (
+								<form onSubmit={handleSubmitForm}>
+									<input hidden name="league._id" value={league._id}></input>
+									<button className="bet-button" type="submit">
+										BET
+									</button>
+								</form>
+							)}
 						</div>
 					</>
 				))}

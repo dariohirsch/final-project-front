@@ -19,6 +19,7 @@ import CompetitionsBet from "./pages/Competitions/CompetitionsBet"
 import PrivateRoute from "./components/PrivateRoute"
 import MatchesCompetitionsBet from "./pages/Competitions/MatchesCompetitionsBet"
 import BetResults from "./pages/BetPages/BetResultsPage"
+import LeagueResults from "./pages/Leagues/LeagueResultsPage"
 
 function App() {
 	return (
@@ -81,6 +82,7 @@ function App() {
 
 					<Route path="/competitions/:id" component={MatchesCompetitions} />
 					<Route exact path="/bet-results" component={BetResults} />
+					<Route exact path="/league-results" component={LeagueResults} />
 				</Switch>
 			</Container>
 		</div>

@@ -43,6 +43,8 @@ function AllLeagues() {
 			})
 	}
 
+	console.log("actual date", new Date() / 1000)
+
 	return (
 		<div>
 			<h1>Current Leagues</h1>
@@ -52,13 +54,17 @@ function AllLeagues() {
 						<div className="info-league-container">
 							<h3>{league.name}</h3>
 
-							<h5>Inscription Price:{league.inscriptionPrice}</h5>
+							<h5>Inscription cost:{league.inscriptionPrice}</h5>
+
 							<h5>
 								Participants: {league.participants.length} / {league.maxParticipants}
 								{/* {league.participants.length === league.maxParticipants ? <p>League is full. Try another one!</p> : <p></p>} */}
 							</h5>
 							<h5>Award: {league.participants.length * league.inscriptionPrice}</h5>
-							{user.coins < league.inscriptionPrice ? (
+
+							{league.finishDate < new Date() / 1000 ? (
+								<p className="red-text">League has finished. Try another one!</p>
+							) : user.coins < league.inscriptionPrice ? (
 								<p className="red-text">You don't have enough coins</p>
 							) : isLoggedIn && league.participants.length !== league.maxParticipants ? (
 								<form onSubmit={handleSubmitForm}>
@@ -78,10 +84,13 @@ function AllLeagues() {
 											Enter
 										</button>
 									) : (
-										<button type="submit" className="join-league-button">
-											Join League
-										</button>
+										<>
+											<button type="submit" className="join-league-button">
+												Join League
+											</button>
+										</>
 									)}
+									<p>Finish date: {new Date(league.finishDate * 1000).toLocaleString()}</p>
 								</form>
 							) : league.participants.length === league.maxParticipants ? (
 								<p className="red-text">League is full. Try another one!</p>
