@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { DiscussionEmbed } from "disqus-react"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts"
 import React from "react"
 import axios from "axios"
 
@@ -8,6 +9,7 @@ function LeagueDetails(props) {
 	const [leagueInfo, setLeagueInfo] = useState()
 	const [loading, setLoading] = useState(true)
 	const [userInLeague, setUserInLeague] = useState([])
+	// const [data, setData] = useState([])
 
 	const leagueId = props.match.params.id
 
@@ -26,8 +28,6 @@ function LeagueDetails(props) {
 		})
 	}, [])
 
-	console.log("user in league >>>>>>>>>>>", userInLeague)
-
 	if (loading === true) {
 		return <p>loading</p>
 	} else {
@@ -37,7 +37,42 @@ function LeagueDetails(props) {
 					<div className="col-6">
 						<h2>Welcome to {leagueInfo.name}</h2>
 						<h5>We are playing for {leagueInfo.participants.length * leagueInfo.inscriptionPrice}€</h5>
+						{/* <div className="graficaDetails">
+							{userInLeague.map((user) => {
+								let data = [{}]
+								data[0][user.userId?.name] = user.coinsInLeague
+								
+							}
+							 console.log("data", data)
+							)}
+
+							<BarChart
+								width={500}
+								height={300}
+								// data={data}
+								margin={{
+									top: 5,
+									right: 30,
+									left: 20,
+									bottom: 5,
+								}}
+							>
+								<CartesianGrid strokeDasharray="3 3" />
+								<XAxis dataKey="name" />
+								<YAxis />
+								<Tooltip />
+								<Legend />
+								{userInLeague.map((user) => {
+									return (
+										<>
+											<Bar dataKey={user.userId?.name} fill="#8884d8" />
+										</>
+									)
+								})}
+							</BarChart>
+						</div> */}
 					</div>
+
 					<div className="col-6">
 						<h2>Clasification</h2>
 						<table class="table">

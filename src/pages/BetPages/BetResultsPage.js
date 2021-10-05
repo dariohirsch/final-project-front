@@ -75,13 +75,6 @@ function BetResults() {
 		})
 	}
 
-	// const getWonBets = () => {
-	// 	// get all won bets
-	// 	axios.get(`${API_URL}/won-bets`).then((response) => {
-	// 		console.log(response)
-	// 	})
-	// }
-
 	return <></>
 }
 
