@@ -81,7 +81,7 @@ function MatchesCompetitions(props) {
 			<div className="row">
 				<div className="matcheslist col-6" style={{ overflow: "scroll", maxHeight: "80vh" }}>
 					{matches.map((match) => (
-						<div key={match.name} className="card cardStyle">
+						<div key={match.name} className="card card-bet cardStyle">
 							<Card border="" style={{ width: "18rem" }}>
 								<Card.Body>
 									<Card.Title>{match.league.name} </Card.Title>
@@ -108,6 +108,7 @@ function MatchesCompetitions(props) {
 					<p></p>
 				) : (
 					<div className="matchDetails col-6">
+						<hr className="divisor" />
 						<div className="singleMatch">
 							<h2>{namesMatch}</h2>
 							<h4 className="matchOddsTitle"> Match Odds </h4>

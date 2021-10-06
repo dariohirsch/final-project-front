@@ -10,7 +10,7 @@ function Navigation() {
 	const history = useHistory()
 
 	return (
-		<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+		<Navbar collapseOnSelect expand="lg" bg="" className="principal-nav" variant="dark">
 			{console.log(user)}
 			<Container>
 				<Nav.Link

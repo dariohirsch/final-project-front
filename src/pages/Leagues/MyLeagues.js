@@ -38,6 +38,7 @@ function MyLeagues() {
 
 	return (
 		<div>
+			<hr />
 			<div className="leagues-container">
 				{myLeagues.map((league) => (
 					<>

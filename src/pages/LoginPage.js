@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { AuthContext } from "./../context/auth.context"
 import BetResults from "./BetPages/BetResultsPage"
 import LeagueResults from "./Leagues/LeagueResultsPage"
+import { Divider } from "react"
 
 const API_URL = process.env.REACT_APP_API_URL
 
@@ -41,7 +42,8 @@ function LoginPage(props) {
 		<div className="LoginPage">
 			<BetResults />
 			<LeagueResults />
-			<h1>Login</h1>
+			<hr className="divisor" />
+			<h1>LOGIN</h1>
 
 			<form onSubmit={handleLoginSubmit}>
 				<label>Email:</label>

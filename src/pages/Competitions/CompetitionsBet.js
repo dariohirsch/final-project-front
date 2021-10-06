@@ -43,7 +43,7 @@ function CompetitionsBet(props) {
 
 	return (
 		<>
-			<Navbar bg="dark" variant="dark" expand="lg">
+			<Navbar bg="" className="sub-navbar" variant="dark" expand="lg">
 				<Container>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">

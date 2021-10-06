@@ -99,14 +99,19 @@ function HomeBetPage(props) {
 
 		return (
 			<>
-				<Navbar bg="dark" variant="dark" expand="lg">
+				<Navbar bg="" variant="dark" className="sub-navbar" expand="lg">
 					<Container>
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
 						<Navbar.Collapse id="basic-navbar-nav">
 							<Nav className="me-auto">
 								<Nav.Link className="navInLeague"> League: {userLeague.name}</Nav.Link>
-								<Nav.Link className="navInLeague2" href="#home">
-									Clasification
+								<Nav.Link
+									className="navInLeague2"
+									onClick={() => {
+										history.push(`/league/${leagueId}`)
+									}}
+								>
+									Home
 								</Nav.Link>
 								<Nav.Link
 									className="navInLeague2"
@@ -141,12 +146,12 @@ function HomeBetPage(props) {
 						{coinsInLeagueUpdate < 0 ? (
 							<h1 className="red-text"> You don't have enought coins </h1>
 						) : (
-							<h3>
+							<h5>
 								{" "}
-								<button className="bet-button" type="submit">
-									place bet
+								<button className="bet-button bet-button-two" type="submit">
+									PLACE BET
 								</button>{" "}
-							</h3>
+							</h5>
 						)}
 					</form>
 				</div>

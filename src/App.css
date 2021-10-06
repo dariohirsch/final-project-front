@@ -1,6 +1,6 @@
 html,
 .App {
-	background-color: rgb(236, 233, 233);
+	background-color: white;
 }
 
 .App {
@@ -84,18 +84,18 @@ html,
 .join-league-button {
 	border: none;
 	background-color: white;
-	border: 1px solid black;
+	border: 1px solid rgb(36, 128, 97);
 	border-radius: 5px;
 	margin: 8px 8px 18px 8px;
 }
 
-.join-league-button:hover {
+/* .join-league-button:hover {
 	background-color: black;
 	color: white;
-}
+} */
 
 .info-league-container {
-	border: 1px solid rgb(117, 156, 214);
+	border: 1px solid rgb(123, 127, 133);
 	margin: 0.5rem;
 	padding: 0;
 	width: 22rem;
@@ -103,8 +103,9 @@ html,
 	text-align: center;
 }
 .info-league-container > h3 {
-	background-color: rgb(120, 163, 228);
+	background-color: rgb(36, 128, 97);
 	padding: 0.4rem;
+	color: white;
 }
 
 .leagues-container {
@@ -117,6 +118,9 @@ html,
 .matchOddsTitle {
 	margin-top: 2rem;
 	margin-bottom: 2rem;
+}
+
+.competitionsContainer {
 }
 
 /* nav styles */
@@ -140,13 +144,20 @@ html,
 	border: none !important;
 	margin: 0.6rem;
 	padding: 0.6rem;
-	opacity: 0.7;
-	background-color: rgb(138, 189, 138);
+	opacity: 1;
+	background-color: rgb(36, 128, 97);
 	width: 5rem;
+	color: white;
 }
 
 .bet-input {
 	margin: 8px;
+}
+
+.bet-button-two {
+	width: 10rem !important;
+	color: white;
+	border-radius: 2px;
 }
 
 .bet-button:hover {
@@ -161,29 +172,30 @@ html,
 	margin: 0.6rem;
 	padding: 0.5rem;
 	opacity: 0.7;
-	background-color: rgb(139, 196, 139);
+	background-color: rgb(36, 128, 97);
 	width: 8rem;
 }
 
 .link-odds {
 	text-decoration: none !important;
-	color: rgb(139, 196, 139) !important;
+	color: rgb(36, 128, 97) !important;
 	font-weight: bold !important;
 }
 
 .link-odds:hover {
-	color: rgb(78, 121, 78) !important;
+	font-weight: bolder;
 }
 
 .see-odds-button {
-	background-color: rgb(139, 196, 139) !important;
+	background-color: rgb(36, 128, 97) !important;
 	border: none !important;
 }
 
 .enter-button {
 	background-color: transparent !important;
-	border: 1px solid black !important;
+	border: 1px solid rgb(36, 128, 97) !important;
 	width: 5rem;
+	color: black !important;
 }
 
 /* 
@@ -215,12 +227,56 @@ home page */
 .log-in-welcome {
 	border: 0.5px solid white;
 	border-radius: 4px;
-	background-color: rgb(139, 196, 139);
+	background-color: rgb(36, 128, 97);
 	padding: 5px;
 }
 
+.principal-nav {
+	background-color: rgb(36, 128, 97) !important;
+}
+
+.sub-navbar {
+	background-color: rgb(36, 128, 97) !important;
+	height: 2rem;
+}
+
+.ticket-pending {
+	text-align: start;
+	border: 2px solid rgb(236, 205, 28);
+	padding: 8px;
+	margin-top: 1.5rem;
+	margin-right: 1.5rem;
+	min-width: 17rem;
+}
+.ticket-lost {
+	text-align: start;
+	border: 2px solid rgb(236, 28, 28);
+	padding: 8px;
+	margin-top: 1.5rem;
+	margin-right: 1.5rem;
+	min-width: 17rem;
+}
+.ticket-won {
+	text-align: start;
+	border: 2px solid rgb(30, 136, 16);
+	padding: 8px;
+	margin-top: 1.5rem;
+	margin-right: 1.5rem;
+	min-width: 17rem;
+}
+
+.ticket-container {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.divisor {
+	color: rgb(36, 128, 97);
+}
+
 .sign-up-welcome {
-	border: 1px solid rgb(139, 196, 139);
+	border: 1px solid rgb(36, 128, 97);
 	border-radius: 4px;
 	background-color: white;
 }
@@ -256,28 +312,31 @@ home page */
 	justify-content: center;
 }
 .first-col button {
-	padding: 25px;
+	padding: 5px;
 	position: relative;
 	z-index: 2;
 	background-color: transparent;
 	border-radius: 30px;
-	border: 2px solid black;
-	width: 14rem !important;
+	border: 2px solid rgb(36, 128, 97);
+	width: 13rem !important;
+	color: rgb(36, 128, 97);
+	font-weight: 2000;
 }
 
 .first-col button:hover {
-	background-color: black;
+	background-color: rgb(36, 128, 97);
 	color: white;
+	border: none;
 }
 .second-col button:hover {
-	background-color: black;
+	background-color: rgb(36, 128, 97);
 	color: white;
-	/* border: solid 2px white; */
+	border: none;
 }
 .second-row button:hover {
-	background-color: black;
+	background-color: rgb(36, 128, 97);
 	color: white;
-	/* border: solid 2px black; */
+	border: none;
 }
 
 .first-col:before {
@@ -305,14 +364,15 @@ home page */
 	justify-content: center;
 }
 .second-col button {
-	padding: 25px;
+	padding: 5px;
 	position: relative;
 	z-index: 2;
 	background-color: transparent;
 	border-radius: 30px;
-	border: 2px solid black;
-	width: 14rem !important;
-	color: black;
+	border: 2px solid rgb(36, 128, 97);
+	width: 13rem !important;
+	color: rgb(36, 128, 97);
+	font-weight: 2000;
 }
 
 /* You could use :after - it doesn't really matter */
@@ -332,6 +392,10 @@ home page */
 	background-size: cover;
 }
 
+.card-bet {
+	border: none !important;
+}
+
 .second-row {
 	position: relative;
 	overflow: hidden;
@@ -341,13 +405,15 @@ home page */
 	justify-content: center;
 }
 .second-row button {
-	padding: 25px;
+	padding: 5px;
 	position: relative;
 	z-index: 2;
 	background-color: transparent;
 	border-radius: 30px;
-	border: 2px solid black;
-	width: 14rem !important;
+	border: 2px solid rgb(36, 128, 97);
+	width: 13rem !important;
+	color: rgb(36, 128, 97);
+	font-weight: 2000;
 }
 
 .second-row:before {

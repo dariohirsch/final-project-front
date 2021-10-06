@@ -38,7 +38,8 @@ function SignupPage(props) {
 
 	return (
 		<div className="SignupPage">
-			<h1>Sign Up</h1>
+			<hr className="divisor" />
+			<h1>SIGN UP</h1>
 
 			<form onSubmit={handleSignupSubmit}>
 				<label>Email:</label>

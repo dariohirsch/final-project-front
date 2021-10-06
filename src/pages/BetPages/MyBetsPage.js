@@ -36,7 +36,7 @@ function MyBetsPage(props) {
 
 	return (
 		<>
-			<Navbar bg="dark" variant="dark" expand="lg">
+			<Navbar bg="" className="sub-navbar" variant="dark" expand="lg">
 				<Container>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
@@ -63,20 +63,88 @@ function MyBetsPage(props) {
 					</Navbar.Collapse>
 				</Container>
 			</Navbar>
-			<h1> You've {mybets.coinsInLeague + mybets.inPlayCoins} coins </h1>
-			<h2> {mybets.coinsInLeague} coins to bet </h2>
-			<h2> You're playing {mybets.inPlayCoins} coins in open bets </h2>
 
-			{mybets.bets?.map((bet) => (
-				<>
-					<p className="myBetsP1">Match: {bet.betMatch} </p>
-					<p className="myBetsP"> Date: {new Date(bet.matchTime * 1000).toLocaleString()} </p>
-					<p className="myBetsP"> Status: {bet.status} </p>
-					<p className="myBetsP"> Signe: {bet.betSigne} </p>
-					<p className="myBetsP"> Coins to win: {bet.coinsToWin} </p>
-					<p className="myBetsP"> Bet amount: {bet.betAmount} </p>
-				</>
-			))}
+			<h4> You have {mybets.inPlayCoins} in play coins </h4>
+			<hr></hr>
+			<div className="container ticket-container">
+				{mybets.bets?.map((bet) => (
+					<>
+						{bet.status === "pending" ? (
+							<div className="ticket ticket-pending">
+								<p className="myBetsP1">{bet.betMatch} </p>
+								<p className="myBetsP">
+									{" "}
+									Date - <b>{new Date(bet.matchTime * 1000).toLocaleString()}</b>{" "}
+								</p>
+								<p className="myBetsP">
+									{" "}
+									Status - <b>{bet.status}</b>{" "}
+								</p>
+								<p className="myBetsP">
+									{" "}
+									Bet - <b>{bet.betSigne}</b>{" "}
+								</p>
+								<p className="myBetsP">
+									{" "}
+									Coins to win - <b>{bet.coinsToWin}</b>{" "}
+								</p>
+								<p className="myBetsP">
+									{" "}
+									Bet amount - <b>{bet.betAmount}</b>{" "}
+								</p>
+							</div>
+						) : bet.status === "won" ? (
+							<div className="ticket ticket-won">
+								<p className="myBetsP1">{bet.betMatch} </p>
+								<p className="myBetsP">
+									{" "}
+									Date - <b>{new Date(bet.matchTime * 1000).toLocaleString()}</b>{" "}
+								</p>
+								<p className="myBetsP">
+									{" "}
+									Status - <b>{bet.status}</b>{" "}
+								</p>
+								<p className="myBetsP">
+									{" "}
+									Bet - <b>{bet.betSigne}</b>{" "}
+								</p>
+								<p className="myBetsP">
+									{" "}
+									Coins to win - <b>{bet.coinsToWin}</b>{" "}
+								</p>
+								<p className="myBetsP">
+									{" "}
+									Bet amount - <b>{bet.betAmount}</b>{" "}
+								</p>
+							</div>
+						) : (
+							<div className="ticket ticket-lost">
+								<p className="myBetsP1">{bet.betMatch} </p>
+								<p className="myBetsP">
+									{" "}
+									Date - <b>{new Date(bet.matchTime * 1000).toLocaleString()}</b>{" "}
+								</p>
+								<p className="myBetsP">
+									{" "}
+									Status - <b>{bet.status}</b>{" "}
+								</p>
+								<p className="myBetsP">
+									{" "}
+									Bet - <b>{bet.betSigne}</b>{" "}
+								</p>
+								<p className="myBetsP">
+									{" "}
+									Coins to win - <b>{bet.coinsToWin}</b>{" "}
+								</p>
+								<p className="myBetsP">
+									{" "}
+									Bet amount - <b>{bet.betAmount}</b>{" "}
+								</p>
+							</div>
+						)}
+					</>
+				))}
+			</div>
 		</>
 	)
 }

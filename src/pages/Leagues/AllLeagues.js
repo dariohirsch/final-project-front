@@ -47,7 +47,7 @@ function AllLeagues() {
 
 	return (
 		<div>
-			<h1>Current Leagues</h1>
+			<hr />
 			<div className="leagues-container">
 				{leagues.map((league) => (
 					<>
@@ -63,9 +63,13 @@ function AllLeagues() {
 							<h5>Award: {league.participants.length * league.inscriptionPrice}</h5>
 
 							{league.finishDate < new Date() / 1000 ? (
-								<p className="red-text">League has finished. Try another one!</p>
+								<p className="red-text">
+									<b>League has finished. Try another one!</b>
+								</p>
 							) : user.coins < league.inscriptionPrice ? (
-								<p className="red-text">You don't have enough coins</p>
+								<p className="red-text">
+									<b>You don't have enough coins</b>
+								</p>
 							) : isLoggedIn && league.participants.length !== league.maxParticipants ? (
 								<form onSubmit={handleSubmitForm}>
 									<input hidden name="user._id" value={user._id}></input>
@@ -93,7 +97,9 @@ function AllLeagues() {
 									<p>Finish date: {new Date(league.finishDate * 1000).toLocaleString()}</p>
 								</form>
 							) : league.participants.length === league.maxParticipants ? (
-								<p className="red-text">League is full. Try another one!</p>
+								<p className="red-text">
+									<b>League is full. Try another one!</b>
+								</p>
 							) : (
 								<p className="red-text">
 									To join a league, please <Link to="/login">log in</Link> or <Link to="signup">sign up </Link>
