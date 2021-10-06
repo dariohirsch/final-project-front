@@ -11,7 +11,6 @@ function Navigation() {
 
 	return (
 		<Navbar collapseOnSelect expand="lg" bg="" className="principal-nav" variant="dark">
-			{console.log(user)}
 			<Container>
 				<Nav.Link
 					className="nav-buttons"

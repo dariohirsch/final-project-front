@@ -42,7 +42,7 @@ function BetResults() {
 		bets.map((bet) => {
 			console.log("he entrado en betcheck")
 			// to make the call to the API only with the games that are finished
-			if (bet.matchTime < actualTimeToEpoch) {
+			if (bet.matchTime + 9000 < actualTimeToEpoch) {
 				let betMatchId = bet.matchId
 				axios.get(`https://api.b365api.com/v1/bet365/result?token=99095-GEZxtGrJVsIYLq&event_id=${betMatchId}`).then((response) => {
 					let homeGoals = response.data.results[0].scores[2].home

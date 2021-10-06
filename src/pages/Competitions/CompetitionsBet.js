@@ -45,29 +45,28 @@ function CompetitionsBet(props) {
 		<>
 			<Navbar bg="" className="sub-navbar" variant="dark" expand="lg">
 				<Container>
-					<Navbar.Toggle aria-controls="basic-navbar-nav" />
-					<Navbar.Collapse id="basic-navbar-nav">
-						<Nav className="me-auto">
-							<Nav.Link className="navInLeague"> League {userLeague.name}</Nav.Link>
-							<Nav.Link
-								className="navInLeague2"
-								onClick={() => {
-									history.push(`/league/${leagueId}`)
-								}}
-							>
-								Home
-							</Nav.Link>
-							<Nav.Link
-								className="navInLeague2"
-								onClick={() => {
-									history.push(`/my-bets/${leagueId}`)
-								}}
-							>
-								My bets
-							</Nav.Link>
-							<Nav.Link className="navInLeague2"> Coins {userInLeague.coinsInLeague}</Nav.Link>
-						</Nav>
-					</Navbar.Collapse>
+					<Nav className="me-auto">
+						<Nav.Link
+							className="navInLeague2"
+							onClick={() => {
+								history.push(`/league/${leagueId}`)
+							}}
+						>
+							Home
+						</Nav.Link>
+						<Nav.Link
+							className="navInLeague2"
+							onClick={() => {
+								history.push(`/my-bets/${leagueId}`)
+							}}
+						>
+							My bets
+						</Nav.Link>
+					</Nav>
+					<Nav className="nav-text-right">
+						<Nav className="nav-text-right"> Coins {userInLeague.coinsInLeague}</Nav>
+						<Nav className="nav-text-right"> {userLeague.name}</Nav>
+					</Nav>
 				</Container>
 			</Navbar>
 			<div className=" competitionsContainer">

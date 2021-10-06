@@ -1,19 +1,24 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { DiscussionEmbed } from "disqus-react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts"
 import React from "react"
 import axios from "axios"
 import randomColor from "randomcolor"
 import { useHistory } from "react-router-dom"
+import { Nav, Navbar, Container } from "react-bootstrap"
+import { AuthContext } from "../../context/auth.context"
 
 function LeagueDetails(props) {
 	const API_URL = process.env.REACT_APP_API_URL
 	const [leagueInfo, setLeagueInfo] = useState()
 	const [loading, setLoading] = useState(true)
 	const [userInLeague, setUserInLeague] = useState([])
+	const [userInLeagueCoins, setUserInLeagueCoins] = useState([])
+	const { user } = useContext(AuthContext)
 
 	const leagueId = props.match.params.id
 	const history = useHistory()
+	let userId = user._id
 
 	let data = [{}]
 
@@ -30,6 +35,15 @@ function LeagueDetails(props) {
 		axios.post(`${API_URL}/get-userinleague2`, coinsInLeagueUser).then((userInLeague) => {
 			setUserInLeague(userInLeague.data)
 		})
+
+		let coinsInLeagueUserCoins = {
+			userId: userId,
+			leagueId: leagueId,
+		}
+
+		axios.post(`${API_URL}/get-userinleague`, coinsInLeagueUserCoins).then((userInLeague) => {
+			setUserInLeagueCoins(userInLeague.data[0])
+		})
 	}, [])
 
 	const handleSubmitForm = (e) => {
@@ -43,6 +57,36 @@ function LeagueDetails(props) {
 	} else {
 		return (
 			<>
+				<Navbar collapseOnSelect bg="" variant="dark" className="sub-navbar" expand="lg">
+					<Container>
+						<Nav className="me-auto">
+							<Navbar.Toggle />
+							<Nav.Link
+								className="navInLeague2"
+								onClick={() => {
+									history.push(`/league/${leagueId}`)
+								}}
+							>
+								Home
+							</Nav.Link>
+							<Nav.Link
+								className="navInLeague2"
+								onClick={() => {
+									history.push(`/my-bets/${leagueId}`)
+								}}
+							>
+								My bets
+							</Nav.Link>
+						</Nav>
+						<Nav className="nav-text-right">
+							<Nav className="nav-text-right"> Coins {userInLeagueCoins.coinsInLeague}</Nav>
+							<Nav className="nav-text-right">
+								{" "}
+								<b>{leagueInfo.name}</b>
+							</Nav>
+						</Nav>
+					</Container>
+				</Navbar>
 				<div className="row">
 					<div className="col-6">
 						<h2>Welcome to {leagueInfo.name}</h2>

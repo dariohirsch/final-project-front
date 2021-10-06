@@ -198,6 +198,13 @@ html,
 	color: black !important;
 }
 
+.nav-text-right {
+	text-decoration: none !important;
+	list-style: none !important;
+	font-weight: bold !important;
+	margin: 0 1rem 0 1rem;
+}
+
 /* 
 home page */
 
@@ -315,11 +322,11 @@ home page */
 	padding: 5px;
 	position: relative;
 	z-index: 2;
-	background-color: transparent;
+	background-color: rgb(36, 128, 97);
 	border-radius: 30px;
 	border: 2px solid rgb(36, 128, 97);
 	width: 13rem !important;
-	color: rgb(36, 128, 97);
+	color: white;
 	font-weight: 2000;
 }
 
@@ -367,11 +374,11 @@ home page */
 	padding: 5px;
 	position: relative;
 	z-index: 2;
-	background-color: transparent;
+	background-color: rgb(36, 128, 97);
 	border-radius: 30px;
 	border: 2px solid rgb(36, 128, 97);
 	width: 13rem !important;
-	color: rgb(36, 128, 97);
+	color: white;
 	font-weight: 2000;
 }
 
@@ -408,11 +415,11 @@ home page */
 	padding: 5px;
 	position: relative;
 	z-index: 2;
-	background-color: transparent;
+	background-color: rgb(36, 128, 97);
 	border-radius: 30px;
 	border: 2px solid rgb(36, 128, 97);
 	width: 13rem !important;
-	color: rgb(36, 128, 97);
+	color: white;
 	font-weight: 2000;
 }
 
