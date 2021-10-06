@@ -4,10 +4,12 @@ import { useEffect, useState, useContext } from "react"
 import { Card, Button, Nav, Navbar, Container } from "react-bootstrap"
 import { AuthContext } from "../../context/auth.context"
 import { Link } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 function MatchesCompetitionsBet(props) {
 	const leagueId = props.match.params.id
 	const competitionId = props.match.params.compId
+	const history = useHistory()
 
 	const [match, setMatch] = useState([])
 	const [loadingDetails, setLoadingDetails] = useState(true)
@@ -34,6 +36,7 @@ function MatchesCompetitionsBet(props) {
 	let namesMatch
 	let nameTeams
 	let userId = user._id
+	let finishDate = userLeague.finishDate
 
 	useEffect(() => {
 		axios.get(`https://api.b365api.com/v1/bet365/upcoming?sport_id=1&token=99095-GEZxtGrJVsIYLq&league_id=${competitionId}`).then((response) => {
@@ -69,7 +72,6 @@ function MatchesCompetitionsBet(props) {
 				match.data.id = id
 				console.log("match", match)
 				setMatch(match.data)
-				// console.log("estooooooooooo", match.data)
 				setLoadingDetails(false)
 			})
 			.catch((error) => {
@@ -78,8 +80,6 @@ function MatchesCompetitionsBet(props) {
 	}
 
 	if (loadingDetails === false) {
-		// homeTeam = match.results[0].others[30].sp.half_time_result_total_goals.odds[0].team
-		// awayTeam = match.results[0].others[30].sp.half_time_result_total_goals.odds[1].team
 		homeCuote = match.results[0].main.sp.full_time_result.odds[0].odds
 		drawCuote = match.results[0].main.sp.full_time_result.odds[1].odds
 		awayCuote = match.results[0].main.sp.full_time_result.odds[2].odds
@@ -94,18 +94,11 @@ function MatchesCompetitionsBet(props) {
 		nameTeams = namesMatch.split(" - ", 2)
 		homeTeam = nameTeams[0]
 		awayTeam = nameTeams[1]
-
-		// console.log(`equipo casa`, nameTeams[0], " ", `equipo fuera`, nameTeams[1])
-
-		// console.log(overHeader, overName, overCuote, `  `, underHeader, underName, underCuote, ` `, namesMatch)
 	}
 
 	if (loading === true) {
 		return <p>loading</p>
 	} else {
-		// console.log(`**22**`, userLeague)
-		// console.log(cuota.results);
-
 		return (
 			<>
 				<Navbar bg="dark" variant="dark" expand="lg">
@@ -113,14 +106,24 @@ function MatchesCompetitionsBet(props) {
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
 						<Navbar.Collapse id="basic-navbar-nav">
 							<Nav className="me-auto">
-								<Nav.Link className="navInLeague"> League: {userLeague.name}</Nav.Link>
-								<Nav.Link className="navInLeague2" href="#home">
-									Clasification
+								<Nav.Link className="navInLeague"> League {userLeague.name}</Nav.Link>
+								<Nav.Link
+									className="navInLeague2"
+									onClick={() => {
+										history.push(`/league/${leagueId}`)
+									}}
+								>
+									Home
 								</Nav.Link>
-								<Nav.Link className="navInLeague2" href="#home">
+								<Nav.Link
+									className="navInLeague2"
+									onClick={() => {
+										history.push(`/my-bets/${leagueId}`)
+									}}
+								>
 									My bets
 								</Nav.Link>
-								<Nav.Link className="navInLeague2"> Coins: {userInLeague.coinsInLeague}</Nav.Link>
+								<Nav.Link className="navInLeague2"> Coins {userInLeague.coinsInLeague}</Nav.Link>
 							</Nav>
 						</Navbar.Collapse>
 					</Container>
@@ -129,14 +132,22 @@ function MatchesCompetitionsBet(props) {
 					<div className="matcheslist col-6" style={{ overflow: "scroll", maxHeight: "80vh" }}>
 						{matches.map((match) => (
 							<div key={match.name} className="card cardStyle">
-								<Card border="primary" style={{ width: "18rem" }}>
+								<Card border="" style={{ width: "18rem" }}>
 									<Card.Body>
 										<Card.Title>{match.league.name}: </Card.Title>
-										<Card.Title>Match: </Card.Title>
-										<Card.Text>{match.home.name}</Card.Text>
-										<Card.Text>{match.away.name}</Card.Text>
-										<Card.Text>{new Date(match.time * 1000).toLocaleString()}</Card.Text>
+										{/* <Card.Title>Match: </Card.Title> */}
+										<Card.Text className="cardd-text">{match.home.name}</Card.Text>
+										<Card.Text className="cardd-text">{match.away.name}</Card.Text>
+										{finishDate < match.time ? (
+											<>
+												<p className="red-text"> This match finish after league time </p>
+												<Card.Text className="red-text">{new Date(match.time * 1000).toLocaleString()}</Card.Text>
+											</>
+										) : (
+											<Card.Text>{new Date(match.time * 1000).toLocaleString()}</Card.Text>
+										)}
 										<Button
+											className="see-odds-button"
 											onClick={() => {
 												showDetails(match.id)
 												setMatchTime(match.time)
@@ -159,38 +170,40 @@ function MatchesCompetitionsBet(props) {
 								<h4 className="matchOddsTitle"> Match Odds </h4>
 								<form>
 									<h5>Full time result</h5>
-									<h6>{homeTeam}</h6>
-									{isLoggedIn ? (
-										<Link to={`/competitions/${leagueId}/matchodds/${match.id}/bethome/${matchTime}`}>
-											<p>{homeCuote}</p>
-										</Link>
-									) : (
-										<p>x.xx</p>
-									)}
+									<div className="bet-info">
+										{/* <h6>{homeTeam}</h6> */}
+										{isLoggedIn ? (
+											<Link className="link-odds" to={`/competitions/${leagueId}/matchodds/${match.id}/bethome/${matchTime}`}>
+												<p>{homeCuote}</p>
+											</Link>
+										) : (
+											<p>x.xx</p>
+										)}
 
-									<h6>Draw</h6>
-									{isLoggedIn ? (
-										<Link to={`/competitions/${leagueId}/matchodds/${match.id}/betdraw/${matchTime}`}>
-											<p>{drawCuote}</p>
-										</Link>
-									) : (
-										<p>x.xx</p>
-									)}
+										{/* <h6>Draw</h6> */}
+										{isLoggedIn ? (
+											<Link className="link-odds" to={`/competitions/${leagueId}/matchodds/${match.id}/betdraw/${matchTime}`}>
+												<p>{drawCuote}</p>
+											</Link>
+										) : (
+											<p>x.xx</p>
+										)}
 
-									<h6>{awayTeam}</h6>
-									{isLoggedIn ? (
-										<Link to={`/competitions/${leagueId}/matchodds/${match.id}/betaway/${matchTime}`}>
-											<p>{awayCuote}</p>
-										</Link>
-									) : (
-										<p>x.xx</p>
-									)}
+										{/* <h6>{awayTeam}</h6> */}
+										{isLoggedIn ? (
+											<Link className="link-odds" to={`/competitions/${leagueId}/matchodds/${match.id}/betaway/${matchTime}`}>
+												<p>{awayCuote}</p>
+											</Link>
+										) : (
+											<p>x.xx</p>
+										)}
+									</div>
 									<h5> How many goals score in the match </h5>
 									<h6>
 										{overHeader} {overName} goals
 									</h6>
 									{isLoggedIn ? (
-										<Link to={`/competitions/${leagueId}/matchodds/${match.id}/betaway`}>
+										<Link className="link-odds" to={`/competitions/${leagueId}/matchodds/${match.id}/betaway`}>
 											<p>{overCuote}</p>
 										</Link>
 									) : (
@@ -201,7 +214,7 @@ function MatchesCompetitionsBet(props) {
 										{underHeader} {underName} goals
 									</h6>
 									{isLoggedIn ? (
-										<Link to={`/competitions/${leagueId}/matchodds/${match.id}/betaway`}>
+										<Link className="link-odds" to={`/competitions/${leagueId}/matchodds/${match.id}/betaway`}>
 											<p>{underCuote}</p>
 										</Link>
 									) : (

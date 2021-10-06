@@ -42,7 +42,7 @@ function MyLeagues() {
 				{myLeagues.map((league) => (
 					<>
 						<div className="info-league-container">
-							<h2>{league.name}</h2>
+							<h3>{league.name}</h3>
 							<h4>
 								Participants: {league.participants.length} / {league.maxParticipants}
 							</h4>
@@ -50,8 +50,8 @@ function MyLeagues() {
 							<h4>Pot: {league.participants.length * league.inscriptionPrice}</h4>
 							<form onSubmit={handleSubmitFormToDetails}>
 								<input hidden name="league._id" value={league._id}></input>
-								<button className="bet-button" type="submit">
-									ENTER
+								<button className="bet-button enter-button" type="submit">
+									<b>ENTER</b>
 								</button>
 							</form>
 

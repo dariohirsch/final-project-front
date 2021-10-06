@@ -27,8 +27,6 @@ function MatchesCompetitions(props) {
 	let underCuote
 	let namesMatch
 	let nameTeams
-	let dateMatch
-	let dateMatchString
 
 	useEffect(() => {
 		axios.get(`https://api.b365api.com/v1/bet365/upcoming?sport_id=1&token=99095-GEZxtGrJVsIYLq&league_id=${competitionId}`).then((response) => {
@@ -84,12 +82,12 @@ function MatchesCompetitions(props) {
 				<div className="matcheslist col-6" style={{ overflow: "scroll", maxHeight: "80vh" }}>
 					{matches.map((match) => (
 						<div key={match.name} className="card cardStyle">
-							<Card border="primary" style={{ width: "18rem" }}>
+							<Card border="" style={{ width: "18rem" }}>
 								<Card.Body>
-									<Card.Title>{match.league.name}: </Card.Title>
-									<Card.Title>Match: </Card.Title>
-									<Card.Text>{match.home.name}</Card.Text>
-									<Card.Text>{match.away.name}</Card.Text>
+									<Card.Title>{match.league.name} </Card.Title>
+									{/* <Card.Title>Match: </Card.Title> */}
+									<Card.Text className="cardd-text">{match.home.name}</Card.Text>
+									<Card.Text className="cardd-text">{match.away.name}</Card.Text>
 
 									<Card.Text>{new Date(match.time * 1000).toLocaleString()}</Card.Text>
 									<Button
@@ -97,6 +95,7 @@ function MatchesCompetitions(props) {
 											showDetails(match.id)
 										}}
 										variant="primary"
+										className="see-odds-button"
 									>
 										See odds details
 									</Button>
@@ -114,38 +113,40 @@ function MatchesCompetitions(props) {
 							<h4 className="matchOddsTitle"> Match Odds </h4>
 							<form>
 								<h5>Full time result</h5>
-								<h6>{homeTeam}</h6>
-								{isLoggedIn ? (
-									<Link to="/all-leagues">
-										<p>{homeCuote}</p>
-									</Link>
-								) : (
-									<p>x.xx</p>
-								)}
+								<div className="bet-info">
+									{/* <h6>{homeTeam}</h6> */}
+									{isLoggedIn ? (
+										<Link to="/all-leagues" className="link-odds">
+											<p>{homeCuote}</p>
+										</Link>
+									) : (
+										<p>x.xx</p>
+									)}
 
-								<h6>Draw</h6>
-								{isLoggedIn ? (
-									<Link to="/all-leagues">
-										<p>{drawCuote}</p>
-									</Link>
-								) : (
-									<p>x.xx</p>
-								)}
+									{/* <h6>Draw</h6> */}
+									{isLoggedIn ? (
+										<Link to="/all-leagues" className="link-odds">
+											<p>{drawCuote}</p>
+										</Link>
+									) : (
+										<p>x.xx</p>
+									)}
 
-								<h6>{awayTeam}</h6>
-								{isLoggedIn ? (
-									<Link to="/all-leagues">
-										<p>{awayCuote}</p>
-									</Link>
-								) : (
-									<p>x.xx</p>
-								)}
+									{/* <h6>{awayTeam}</h6> */}
+									{isLoggedIn ? (
+										<Link to="/all-leagues" className="link-odds">
+											<p>{awayCuote}</p>
+										</Link>
+									) : (
+										<p>x.xx</p>
+									)}
+								</div>
 								<h5> How many goals score in the match </h5>
 								<h6>
 									{overHeader} {overName} goals
 								</h6>
 								{isLoggedIn ? (
-									<Link to="/all-leagues">
+									<Link to="/all-leagues" className="link-odds">
 										<p>{overCuote}</p>
 									</Link>
 								) : (
@@ -156,7 +157,7 @@ function MatchesCompetitions(props) {
 									{underHeader} {underName} goals
 								</h6>
 								{isLoggedIn ? (
-									<Link to="/all-leagues">
+									<Link to="/all-leagues" className="link-odds">
 										<p>{underCuote}</p>
 									</Link>
 								) : (

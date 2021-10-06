@@ -3,15 +3,19 @@ import { DiscussionEmbed } from "disqus-react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts"
 import React from "react"
 import axios from "axios"
+import randomColor from "randomcolor"
+import { useHistory } from "react-router-dom"
 
 function LeagueDetails(props) {
 	const API_URL = process.env.REACT_APP_API_URL
 	const [leagueInfo, setLeagueInfo] = useState()
 	const [loading, setLoading] = useState(true)
 	const [userInLeague, setUserInLeague] = useState([])
-	// const [data, setData] = useState([])
 
 	const leagueId = props.match.params.id
+	const history = useHistory()
+
+	let data = [{}]
 
 	useEffect(() => {
 		axios.get(`${API_URL}/league-details/${leagueId}`).then((response) => {
@@ -28,6 +32,12 @@ function LeagueDetails(props) {
 		})
 	}, [])
 
+	const handleSubmitForm = (e) => {
+		e.preventDefault()
+
+		history.push(`/competitions/bet/${e.target[0].value}`)
+	}
+
 	if (loading === true) {
 		return <p>loading</p>
 	} else {
@@ -37,24 +47,31 @@ function LeagueDetails(props) {
 					<div className="col-6">
 						<h2>Welcome to {leagueInfo.name}</h2>
 						<h5>We are playing for {leagueInfo.participants.length * leagueInfo.inscriptionPrice}€</h5>
-						{/* <div className="graficaDetails">
+
+						{leagueInfo.finishDate < new Date() / 1000 ? (
+							<p className="red-text">League has finished. You can't bet anymore</p>
+						) : (
+							<form onSubmit={handleSubmitForm}>
+								<input hidden name="league._id" value={leagueId}></input>
+								<button className="bet-button-details" type="submit">
+									BET
+								</button>
+							</form>
+						)}
+						<div className="graficaDetails">
 							{userInLeague.map((user) => {
-								let data = [{}]
 								data[0][user.userId?.name] = user.coinsInLeague
-								
-							}
-							 console.log("data", data)
-							)}
+							})}
 
 							<BarChart
-								width={500}
-								height={300}
-								// data={data}
+								width={450}
+								height={270}
+								data={data}
 								margin={{
-									top: 5,
+									top: 40,
 									right: 30,
 									left: 20,
-									bottom: 5,
+									bottom: 25,
 								}}
 							>
 								<CartesianGrid strokeDasharray="3 3" />
@@ -65,12 +82,12 @@ function LeagueDetails(props) {
 								{userInLeague.map((user) => {
 									return (
 										<>
-											<Bar dataKey={user.userId?.name} fill="#8884d8" />
+											<Bar dataKey={user.userId?.name} fill={randomColor({ luminosity: "dark" })} />
 										</>
 									)
 								})}
 							</BarChart>
-						</div> */}
+						</div>
 					</div>
 
 					<div className="col-6">

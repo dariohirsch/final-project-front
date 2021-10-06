@@ -60,7 +60,14 @@ function Navigation() {
 						{/* <Navbar.Collapse id="responsive-navbar-nav"> */}
 						<span className="nav-text">Welcome {user?.name}</span>
 						<span className="nav-text"> {user?.coins}€</span>
-						<button className="log-out" onClick={logOutUser} href="/">
+						<button
+							className="log-out"
+							onClick={() => {
+								logOutUser()
+								history.push("/")
+							}}
+						>
+							{" "}
 							Logout
 						</button>
 

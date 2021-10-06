@@ -54,7 +54,7 @@ function AllLeagues() {
 						<div className="info-league-container">
 							<h3>{league.name}</h3>
 
-							<h5>Inscription cost:{league.inscriptionPrice}</h5>
+							<h5>Inscription cost: {league.inscriptionPrice}</h5>
 
 							<h5>
 								Participants: {league.participants.length} / {league.maxParticipants}

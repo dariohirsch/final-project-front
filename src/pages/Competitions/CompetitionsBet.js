@@ -9,6 +9,7 @@ import { Nav, Navbar, Container } from "react-bootstrap"
 import axios from "axios"
 import { useEffect, useContext, useState } from "react"
 import { AuthContext } from "../../context/auth.context"
+import { useHistory } from "react-router-dom"
 
 function CompetitionsBet(props) {
 	const leagueId = props.match.params.id
@@ -16,6 +17,7 @@ function CompetitionsBet(props) {
 	const [userInLeague, setUserInLeague] = useState(0)
 	const [userLeague, setUserLeague] = useState("")
 	const API_URL = process.env.REACT_APP_API_URL
+	const history = useHistory()
 
 	let franceId = 10040669
 	let spainId = 10041110
@@ -46,14 +48,24 @@ function CompetitionsBet(props) {
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="me-auto">
-							<Nav.Link className="navInLeague"> League: {userLeague.name}</Nav.Link>
-							<Nav.Link className="navInLeague2" href="#home">
-								Clasification
+							<Nav.Link className="navInLeague"> League {userLeague.name}</Nav.Link>
+							<Nav.Link
+								className="navInLeague2"
+								onClick={() => {
+									history.push(`/league/${leagueId}`)
+								}}
+							>
+								Home
 							</Nav.Link>
-							<Nav.Link className="navInLeague2" href="#home">
+							<Nav.Link
+								className="navInLeague2"
+								onClick={() => {
+									history.push(`/my-bets/${leagueId}`)
+								}}
+							>
 								My bets
 							</Nav.Link>
-							<Nav.Link className="navInLeague2"> Coins: {userInLeague.coinsInLeague}</Nav.Link>
+							<Nav.Link className="navInLeague2"> Coins {userInLeague.coinsInLeague}</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>
 				</Container>

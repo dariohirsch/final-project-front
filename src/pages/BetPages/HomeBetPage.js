@@ -108,7 +108,12 @@ function HomeBetPage(props) {
 								<Nav.Link className="navInLeague2" href="#home">
 									Clasification
 								</Nav.Link>
-								<Nav.Link className="navInLeague2" href="#home">
+								<Nav.Link
+									className="navInLeague2"
+									onClick={() => {
+										history.push(`/my-bets/${leagueId}`)
+									}}
+								>
 									My bets
 								</Nav.Link>
 								<Nav.Link className="navInLeague2"> Coins: {userInLeague.coinsInLeague}</Nav.Link>
@@ -128,15 +133,20 @@ function HomeBetPage(props) {
 					<p>Coute: {homeCuote}</p>
 					<form onSubmit={handleSubmitForm}>
 						{/* <input hidden name="league._id" value={league._id}></input> */}
-						<input type="number" name="coinsAmount" value={coinsAmount} onChange={handleCoinsAmountChange} placeholder="coins to bet" />
-						<h6> Potencial winnings {coinsPotencials} </h6>
+						<input type="number" name="coinsAmount" className="bet-input" value={coinsAmount} onChange={handleCoinsAmountChange} placeholder="coins to bet" />
+						<h6>
+							{" "}
+							<b>Potencial winnings {coinsPotencials}</b>{" "}
+						</h6>
 						{coinsInLeagueUpdate < 0 ? (
 							<h1 className="red-text"> You don't have enought coins </h1>
 						) : (
-							<h1>
+							<h3>
 								{" "}
-								<button type="submit">Bet in your League</button>{" "}
-							</h1>
+								<button className="bet-button" type="submit">
+									place bet
+								</button>{" "}
+							</h3>
 						)}
 					</form>
 				</div>

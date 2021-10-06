@@ -1,6 +1,15 @@
+html,
+.App {
+	background-color: rgb(236, 233, 233);
+}
+
 .App {
 	text-align: center;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-family: "Roboto", sans-serif;
+}
+
+.main-container {
+	margin-top: 2rem;
 }
 .nav-buttons {
 	color: white !important;
@@ -8,6 +17,16 @@
 .App-logo {
 	height: 40vmin;
 	pointer-events: none;
+}
+
+.bet-info {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: baseline;
+}
+
+.cardd-text {
+	font-size: 16px !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -76,10 +95,16 @@
 }
 
 .info-league-container {
-	border: 1px solid black;
+	border: 1px solid rgb(117, 156, 214);
 	margin: 0.5rem;
-	padding: 0.5rem;
+	padding: 0;
 	width: 22rem;
+	background-color: white;
+	text-align: center;
+}
+.info-league-container > h3 {
+	background-color: rgb(120, 163, 228);
+	padding: 0.4rem;
 }
 
 .leagues-container {
@@ -112,14 +137,53 @@
 
 /* bet */
 .bet-button {
-	border: none;
+	border: none !important;
 	margin: 0.6rem;
-	padding: 0.5rem;
+	padding: 0.6rem;
 	opacity: 0.7;
+	background-color: rgb(138, 189, 138);
+	width: 5rem;
+}
+
+.bet-input {
+	margin: 8px;
 }
 
 .bet-button:hover {
 	opacity: 1;
+}
+.bet-button-details:hover {
+	opacity: 1;
+}
+
+.bet-button-details {
+	border: none !important;
+	margin: 0.6rem;
+	padding: 0.5rem;
+	opacity: 0.7;
+	background-color: rgb(139, 196, 139);
+	width: 8rem;
+}
+
+.link-odds {
+	text-decoration: none !important;
+	color: rgb(139, 196, 139) !important;
+	font-weight: bold !important;
+}
+
+.link-odds:hover {
+	color: rgb(78, 121, 78) !important;
+}
+
+.see-odds-button {
+	background-color: rgb(139, 196, 139) !important;
+	border: none !important;
+}
+
+.enter-button {
+	background-color: transparent !important;
+	border: 1px solid black !important;
+	width: 5rem;
 }
 
 /* 
