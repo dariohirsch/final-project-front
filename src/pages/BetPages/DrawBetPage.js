@@ -151,7 +151,7 @@ function DrawBetPage(props) {
 						{finishDate < matchTime ? (
 							<h4 className="red-text"> Match date is after league finish date! </h4>
 						) : coinsInLeagueUpdate < 0 ? (
-							<h1 className="red-text"> You don't have enought coins </h1>
+							<h1 className="red-text"> You don't have enough coins </h1>
 						) : (
 							<h5>
 								{" "}
