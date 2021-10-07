@@ -46,10 +46,10 @@ function LoginPage(props) {
 			<h1>LOGIN</h1>
 
 			<form onSubmit={handleLoginSubmit}>
-				<label>Email:</label>
+				<label>Email</label>
 				<input type="text" name="email" value={email} onChange={handleEmail} />
 
-				<label>Password:</label>
+				<label>Password</label>
 				<input type="password" name="password" value={password} onChange={handlePassword} />
 
 				<button type="submit" className="button-log-sign">

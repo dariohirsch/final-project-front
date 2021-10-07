@@ -42,13 +42,13 @@ function SignupPage(props) {
 			<h1>SIGN UP</h1>
 
 			<form onSubmit={handleSignupSubmit}>
-				<label>Email:</label>
+				<label>Email</label>
 				<input type="text" name="email" value={email} onChange={handleEmail} />
 
-				<label>Password:</label>
+				<label>Password</label>
 				<input type="password" name="password" value={password} onChange={handlePassword} />
 
-				<label>Name:</label>
+				<label>Name</label>
 				<input type="text" name="name" value={name} onChange={handleName} />
 				<input type="number" hidden name="coins" value={1000} onChange={handleCoins} />
 

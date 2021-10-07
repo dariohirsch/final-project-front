@@ -9,7 +9,7 @@ function DrawBetPage(props) {
 	const matchId = props.match.params.matchId
 	const leagueId = props.match.params.id
 	const matchTime = props.match.params.matchTime
-
+	const finishDate = props.match.params.finishDate
 	const API_URL = process.env.REACT_APP_API_URL
 
 	const [matchs, setMatchs] = useState([])
@@ -140,7 +140,9 @@ function DrawBetPage(props) {
 							{" "}
 							<b>Potencial winnings {coinsPotencials}</b>{" "}
 						</h6>
-						{coinsInLeagueUpdate < 0 ? (
+						{finishDate < matchTime ? (
+							<h4 className="red-text"> Match date is after league finish date! </h4>
+						) : coinsInLeagueUpdate < 0 ? (
 							<h1 className="red-text"> You don't have enought coins </h1>
 						) : (
 							<h5>

@@ -19,7 +19,7 @@ function CompetitionsBet(props) {
 	const API_URL = process.env.REACT_APP_API_URL
 	const history = useHistory()
 
-	let franceId = 10040669
+	let franceId = 10041100
 	let spainId = 10041110
 	let italyId = 10041315
 	let englandId = 10041282

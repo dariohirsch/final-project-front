@@ -8,7 +8,7 @@ function AllLeagues() {
 	const API_URL = process.env.REACT_APP_API_URL
 	const [leagues, setLeagues] = useState([])
 	const { isLoggedIn, user, setUser } = useContext(AuthContext)
-
+	const [accessCode, setAccessCode] = useState("")
 	const history = useHistory()
 
 	useEffect(() => {
@@ -23,8 +23,11 @@ function AllLeagues() {
 			.catch((error) => console.log(error))
 	}
 
+	const handlesetAccessCodeChange = (e) => {
+		setAccessCode(e.target.value)
+	}
+
 	const handleSubmitForm = (e) => {
-		// console.log(e.target[2].value)
 		e.preventDefault()
 
 		let joinLeagueInfo = {
@@ -43,8 +46,6 @@ function AllLeagues() {
 			})
 	}
 
-	console.log("actual date", new Date() / 1000)
-
 	return (
 		<div>
 			<hr />
@@ -52,7 +53,7 @@ function AllLeagues() {
 				{leagues.map((league) => (
 					<>
 						<div className="info-league-container">
-							<h3>{league.name}</h3>
+							<h4>{league.name}</h4>
 
 							<h5>Inscription cost: {league.inscriptionPrice}</h5>
 
@@ -61,14 +62,14 @@ function AllLeagues() {
 								{/* {league.participants.length === league.maxParticipants ? <p>League is full. Try another one!</p> : <p></p>} */}
 							</h5>
 							<h5>Award: {league.participants.length * league.inscriptionPrice}</h5>
-
+							{league.accessCode !== "" ? <p>Private league</p> : <p></p>}
 							{league.finishDate < new Date() / 1000 ? (
 								<p className="red-text">
 									<b>League has finished. Try another one!</b>
 								</p>
 							) : user.coins < league.inscriptionPrice ? (
 								<p className="red-text">
-									<b>You don't have enough coins</b>
+									<b>You don't have enough money</b>
 								</p>
 							) : isLoggedIn && league.participants.length !== league.maxParticipants ? (
 								<form onSubmit={handleSubmitForm}>
@@ -89,12 +90,18 @@ function AllLeagues() {
 										</button>
 									) : (
 										<>
-											<button type="submit" className="join-league-button">
-												Join League
-											</button>
+											{league.accessCode !== "" && league.accessCode !== accessCode ? <input type="text" className="join-league-button2 accesCode" name="accessCode" value={accessCode} onChange={handlesetAccessCodeChange} placeholder=" " /> : <p></p>}
+
+											{league.accessCode !== "" && league.accessCode !== accessCode ? (
+												<p>Incorrect access code</p>
+											) : (
+												<button type="submit" className="join-league-button">
+													Join League
+												</button>
+											)}
 										</>
 									)}
-									<p>Finish date: {new Date(league.finishDate * 1000).toLocaleString()}</p>
+									<p className="finish-date">Finish date: {new Date(league.finishDate * 1000).toLocaleString()}</p>
 								</form>
 							) : league.participants.length === league.maxParticipants ? (
 								<p className="red-text">

@@ -171,27 +171,24 @@ function MatchesCompetitionsBet(props) {
 								<form>
 									<h5>Full time result</h5>
 									<div className="bet-info">
-										{/* <h6>{homeTeam}</h6> */}
 										{isLoggedIn ? (
-											<Link className="link-odds" to={`/competitions/${leagueId}/matchodds/${match.id}/bethome/${matchTime}`}>
+											<Link className="link-odds" to={`/competitions/${leagueId}/matchodds/${match.id}/bethome/${matchTime}/${finishDate}`}>
 												<p>{homeCuote}</p>
 											</Link>
 										) : (
 											<p>x.xx</p>
 										)}
 
-										{/* <h6>Draw</h6> */}
 										{isLoggedIn ? (
-											<Link className="link-odds" to={`/competitions/${leagueId}/matchodds/${match.id}/betdraw/${matchTime}`}>
+											<Link className="link-odds" to={`/competitions/${leagueId}/matchodds/${match.id}/betdraw/${matchTime}/${finishDate}`}>
 												<p>{drawCuote}</p>
 											</Link>
 										) : (
 											<p>x.xx</p>
 										)}
 
-										{/* <h6>{awayTeam}</h6> */}
 										{isLoggedIn ? (
-											<Link className="link-odds" to={`/competitions/${leagueId}/matchodds/${match.id}/betaway/${matchTime}`}>
+											<Link className="link-odds" to={`/competitions/${leagueId}/matchodds/${match.id}/betaway/${matchTime}/${finishDate}`}>
 												<p>{awayCuote}</p>
 											</Link>
 										) : (

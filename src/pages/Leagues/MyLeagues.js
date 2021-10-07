@@ -43,12 +43,12 @@ function MyLeagues() {
 				{myLeagues.map((league) => (
 					<>
 						<div className="info-league-container">
-							<h3>{league.name}</h3>
-							<h4>
+							<h4>{league.name}</h4>
+							<h5>
 								Participants: {league.participants.length} / {league.maxParticipants}
-							</h4>
+							</h5>
 
-							<h4>Pot: {league.participants.length * league.inscriptionPrice}</h4>
+							<h5>Pot: {league.participants.length * league.inscriptionPrice}</h5>
 							<form onSubmit={handleSubmitFormToDetails}>
 								<input hidden name="league._id" value={league._id}></input>
 								<button className="bet-button enter-button" type="submit">
@@ -57,7 +57,7 @@ function MyLeagues() {
 							</form>
 
 							{league.finishDate < new Date() / 1000 ? (
-								<p className="red-text">League has finished. Try another one!</p>
+								<p className="red-text">League has finished.</p>
 							) : (
 								<form onSubmit={handleSubmitForm}>
 									<input hidden name="league._id" value={league._id}></input>
@@ -66,6 +66,7 @@ function MyLeagues() {
 									</button>
 								</form>
 							)}
+							<p className="finish-date">Finish date: {new Date(league.finishDate * 1000).toLocaleString()}</p>
 						</div>
 					</>
 				))}

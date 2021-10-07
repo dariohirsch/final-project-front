@@ -59,21 +59,21 @@ function App() {
 
 					<Route
 						exact
-						path="/competitions/:id/matchodds/:matchId/bethome/:matchTime"
+						path="/competitions/:id/matchodds/:matchId/bethome/:matchTime/:finishDate"
 						render={(routeProps) => {
 							return <HomeBetPage {...routeProps} />
 						}}
 					/>
 					<Route
 						exact
-						path="/competitions/:id/matchodds/:matchId/betDraw/:matchTime"
+						path="/competitions/:id/matchodds/:matchId/betDraw/:matchTime/:finishDate"
 						render={(routeProps) => {
 							return <DrawBetPage {...routeProps} />
 						}}
 					/>
 					<Route
 						exact
-						path="/competitions/:id/matchodds/:matchId/betAway/:matchTime"
+						path="/competitions/:id/matchodds/:matchId/betAway/:matchTime/:finishDate"
 						render={(routeProps) => {
 							return <AwayBetPage {...routeProps} />
 						}}

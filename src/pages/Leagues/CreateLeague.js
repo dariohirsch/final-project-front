@@ -14,6 +14,7 @@ function CreateLeague() {
 	const [accessCode, setAccessCode] = useState("")
 	const [participants, setParticipants] = useState("")
 	const [pot, setPot] = useState(0)
+	const [potToWinners, setPotToWinners] = useState(0)
 	const [condition, setCondition] = useState("open")
 	const [finishDate, setFinishDate] = useState("")
 
@@ -49,6 +50,10 @@ function CreateLeague() {
 		setPot(e.target.value)
 	}
 
+	const handlepotToWinersChange = (e) => {
+		setPotToWinners(e.target.value)
+	}
+
 	// const handleFinishDate = (e) => {
 	const actualDateEpoch = new Date() / 1000
 	// 	setFinishDate(e.target.value)
@@ -70,6 +75,7 @@ function CreateLeague() {
 			participants: participants,
 			pot: pot,
 			condition: condition,
+			potToWinners: potToWinners,
 			finishDate: parseInt(finishDate) * 86400 + actualDateEpoch,
 		}
 
@@ -83,7 +89,7 @@ function CreateLeague() {
 			setCondition("open")
 			setFinishDate("")
 
-			history.push("/")
+			history.push("/all-leagues")
 		})
 	}
 
@@ -91,22 +97,28 @@ function CreateLeague() {
 		<div>
 			{isLoggedIn ? (
 				<div className="AddApartmentPage">
-					<h3>Create new league</h3>
+					<hr />
+					<h3>CREATE LEAGUE</h3>
 					<form className="form-create-league" onSubmit={handleSubmit}>
-						<input type="text" name="name" value={name} onChange={handleNameLineChange} placeholder=" league name" />
-						<input type="number" name="inscriptionPrice" value={inscriptionPrice} onChange={handleInscriptionPrice} placeholder=" inscription price" />
-						<input type="number" name="maxParticipants" value={maxParticipants} onChange={handlemaxParticipantsChange} placeholder="max participants" />
+						<input className="create-league-input" type="text" name="name" value={name} onChange={handleNameLineChange} placeholder=" league name" />
+						<input className="create-league-input" type="number" name="inscriptionPrice" value={inscriptionPrice} onChange={handleInscriptionPrice} placeholder=" inscription cost" />
+						<input className="create-league-input" type="number" name="maxParticipants" value={maxParticipants} onChange={handlemaxParticipantsChange} placeholder="max participants" />
 
-						<input type="number" name="finishDate" value={finishDate} onChange={handleFinishDate} placeholder="duration (days)" />
+						<input className="create-league-input" type="number" name="finishDate" value={finishDate} onChange={handleFinishDate} placeholder="duration (days)" />
 						{/* <input type="number" hidden name="duration" value={finishDateInput} onChange={handleFinishDate} placeholder="duration (days)" /> */}
 
-						<input type="text" name="accessCode" value={accessCode} onChange={handlesetAccessCodeChange} placeholder=" access code (optional)" />
+						<input className="create-league-input" type="text" name="accessCode" value={accessCode} onChange={handlesetAccessCodeChange} placeholder=" access code (optional)" />
+						<select id="potToWinners" name="potToWinners" onChange={handlepotToWinersChange}>
+							<option value="allWinners">First wins all</option>
+							<option value="first-second-third">First second and third</option>
+							<option value="half">First half participants</option>
+						</select>
 						<input type="text" hidden name="participants" value={participants} onChange={handlesetParticipantsChange} />
 						<input type="number" hidden name="pot" value={pot} onChange={handlepotChange} />
 						<input type="number" hidden name="condition" value={condition} onChange={handleConditionChange} />
 
 						<button className="bet-button" type="submit">
-							SUBMIT
+							CREATE
 						</button>
 					</form>
 				</div>
