@@ -77,6 +77,14 @@ function LeagueDetails(props) {
 							>
 								My bets
 							</Nav.Link>
+							<Nav.Link
+								className="navInLeague2"
+								onClick={() => {
+									history.push(`/competitions/bet/${leagueId}`)
+								}}
+							>
+								Bet
+							</Nav.Link>
 						</Nav>
 						<Nav className="nav-text-right">
 							<Nav className="nav-text-right"> Coins {userInLeagueCoins.coinsInLeague}</Nav>
