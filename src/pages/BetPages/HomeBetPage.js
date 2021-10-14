@@ -30,7 +30,7 @@ function HomeBetPage(props) {
 	let userId = user._id
 
 	useEffect(() => {
-		axios.get(`https://api.b365api.com/v3/bet365/prematch?token=99095-GEZxtGrJVsIYLq&FI=${matchId}`).then((matchsApi) => {
+		axios.get(`https://api.b365api.com/v3/bet365/prematch?token=100333-basbqm5dk2PGt7&FI=${matchId}`).then((matchsApi) => {
 			setMatchs(matchsApi.data)
 			setLoading(false)
 

@@ -11,10 +11,10 @@ html,
 .main-container {
 	margin-top: 2rem;
 }
+
 .nav-buttons {
 	color: white !important;
 }
-
 .App-logo {
 	height: 40vmin;
 	pointer-events: none;
@@ -208,6 +208,7 @@ html,
 	font-weight: bold !important;
 	margin: 0 1rem 0 1rem;
 }
+
 .nav-text-right2 {
 	text-decoration: none !important;
 	list-style: none !important;
@@ -552,12 +553,34 @@ home page */
 		display: flex;
 		padding-left: 0;
 		margin-bottom: 0;
+		width: auto;
 	}
 
 	.clasificationLeague {
 		width: 100% !important;
 	}
+
 	.graficaDetails {
-		display: none;
+		display: none !important;
+	}
+
+	.fotosLigas {
+		height: 39vh !important;
+	}
+	.competitionsContainer {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.nav-textResponsive {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 1rem;
+	}
+	.nav-buttons-responsive {
+		width: 62vw;
+		display: flex !important;
+		justify-content: center;
+		margin-left: 3rem;
 	}
 }
