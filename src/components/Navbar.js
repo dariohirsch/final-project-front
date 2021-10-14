@@ -20,66 +20,69 @@ function Navigation() {
 				>
 					BetFriends
 				</Nav.Link>
-				<Nav className="me-auto">
-					<Nav.Link
-						className="nav-buttons"
-						onClick={() => {
-							history.push("/competitions")
-						}}
-					>
-						Upcoming matches
-					</Nav.Link>
-					<NavDropdown className="nav-buttons" title="Leagues" id="collasible-nav-dropdown">
-						<NavDropdown.Item
+				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+				<Navbar.Collapse id="responsive-navbar-nav">
+					<Nav className="me-auto">
+						<Nav.Link
+							className="nav-buttons"
 							onClick={() => {
-								history.push("/all-leagues")
+								history.push("/competitions")
 							}}
 						>
-							View all leagues
-						</NavDropdown.Item>
-						<NavDropdown.Item
-							onClick={() => {
-								history.push("/my-leagues")
-							}}
-						>
-							My leagues
-						</NavDropdown.Item>
-						<NavDropdown.Item
-							onClick={() => {
-								history.push("/create-league")
-							}}
-						>
-							Create new league
-						</NavDropdown.Item>
-					</NavDropdown>
-				</Nav>
-				{isLoggedIn ? (
-					<>
-						<Navbar.Toggle aria-controls="responsive-navbar-nav" />
-						{/* <Navbar.Collapse id="responsive-navbar-nav"> */}
-						<span className="nav-text">Welcome {user?.name}</span>
-						<span className="nav-text"> {user?.coins}€</span>
-						<button
-							className="log-out"
-							onClick={() => {
-								logOutUser()
-								history.push("/")
-							}}
-						>
-							{" "}
-							Logout
-						</button>
+							Upcoming matches
+						</Nav.Link>
+						<NavDropdown className="nav-buttons" title="Leagues" id="collasible-nav-dropdown">
+							<NavDropdown.Item
+								onClick={() => {
+									history.push("/all-leagues")
+								}}
+							>
+								View all leagues
+							</NavDropdown.Item>
+							<NavDropdown.Item
+								onClick={() => {
+									history.push("/my-leagues")
+								}}
+							>
+								My leagues
+							</NavDropdown.Item>
+							<NavDropdown.Item
+								onClick={() => {
+									history.push("/create-league")
+								}}
+							>
+								Create new league
+							</NavDropdown.Item>
+						</NavDropdown>
+					</Nav>
+					{isLoggedIn ? (
+						<>
+							{/* <Navbar.Toggle aria-controls="responsive-navbar-nav" /> */}
+							{/* <Navbar.Collapse id="responsive-navbar-nav"> */}
+							<span className="nav-text">Welcome {user?.name}</span>
+							<span className="nav-text"> {user?.coins}€</span>
+							<button
+								className="log-out"
+								onClick={() => {
+									logOutUser()
+									history.push("/")
+								}}
+							>
+								{" "}
+								Logout
+							</button>
 
-						{/* </Navbar.Collapse> */}
-					</>
-				) : (
-					<>
-						<Nav>
-							<Nav.Link href="/login">Log In</Nav.Link>
-							<Nav.Link href="/signup">Sign Up</Nav.Link>
-						</Nav>
-					</>
-				)}
+							{/* </Navbar.Collapse> */}
+						</>
+					) : (
+						<>
+							<Nav>
+								<Nav.Link href="/login">Log In</Nav.Link>
+								<Nav.Link href="/signup">Sign Up</Nav.Link>
+							</Nav>
+						</>
+					)}
+				</Navbar.Collapse>
 			</Container>
 		</Navbar>
 	)
