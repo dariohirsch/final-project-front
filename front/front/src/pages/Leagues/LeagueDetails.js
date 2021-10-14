@@ -59,8 +59,8 @@ function LeagueDetails(props) {
 			<>
 				<Navbar collapseOnSelect bg="" variant="dark" className="sub-navbar" expand="lg">
 					<Container>
-						<Nav className="me-auto subNavDet">
-					
+						<Nav className="me-auto">
+							<Navbar.Toggle />
 							<Nav.Link
 								className="navInLeague2"
 								onClick={() => {
@@ -88,15 +88,15 @@ function LeagueDetails(props) {
 						</Nav>
 						<Nav className="nav-text-right">
 							<Nav className="nav-text-right"> Coins {userInLeagueCoins.coinsInLeague}</Nav>
-							<Nav className="nav-text-right2">
+							<Nav className="nav-text-right">
 								{" "}
 								<b>{leagueInfo.name}</b>
 							</Nav>
 						</Nav>
 					</Container>
 				</Navbar>
-				<div className="row leagueDetails">
-					<div className="col-6 playFor">
+				<div className="row">
+					<div className="col-6">
 						<h2>Welcome to {leagueInfo.name}</h2>
 						<h5>We are playing for {leagueInfo.participants.length * leagueInfo.inscriptionPrice}€</h5>
 
@@ -142,7 +142,7 @@ function LeagueDetails(props) {
 						</div>
 					</div>
 
-					<div className="col-6 clasificationLeague">
+					<div className="col-6">
 						<h2>Clasification</h2>
 						<table class="table">
 							<thead>

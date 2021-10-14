@@ -13,7 +13,7 @@ function Navigation() {
 		<Navbar collapseOnSelect expand="lg" bg="" className="principal-nav" variant="dark">
 			<Container>
 				<Nav.Link
-					className="nav-buttons nav-buttons-responsive"
+					className="nav-buttons"
 					onClick={() => {
 						history.push("/")
 					}}
@@ -57,12 +57,10 @@ function Navigation() {
 				</Nav>
 				{isLoggedIn ? (
 					<>
-						
+						<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 						{/* <Navbar.Collapse id="responsive-navbar-nav"> */}
-            <div className="nav-textResponsive">
 						<span className="nav-text">Welcome {user?.name}</span>
 						<span className="nav-text"> {user?.coins}€</span>
-            </div>
 						<button
 							className="log-out"
 							onClick={() => {

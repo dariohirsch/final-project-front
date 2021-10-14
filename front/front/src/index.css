@@ -1,0 +1,116 @@
+#signup .text:focus {
+	outline: 0px;
+}
+body {
+	margin: 0;
+}
+
+a {
+	list-style: none;
+	color: black;
+}
+
+button,
+select {
+	padding: 5px 10px;
+	min-width: 50px;
+	margin: 5px;
+	font-size: 18px;
+}
+
+label {
+	width: 200px;
+	display: block;
+}
+
+input,
+textarea {
+	width: 200px;
+	padding: 10px;
+	display: inline-block;
+	margin: 10px;
+}
+
+nav {
+	background: #515f7d;
+	color: white;
+	padding: 0px 20px;
+	box-shadow: 0px 1px 2px gray;
+	width: 100%;
+	margin-bottom: 15px;
+	padding: 5px;
+}
+
+nav li {
+	list-style: none;
+	color: white;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.card {
+	width: 400px;
+	padding: 10px;
+
+	margin: 0 auto;
+	margin-bottom: 20px;
+	background: #94a7c8;
+}
+
+.button-log-sign {
+	border: none;
+	margin: 15px;
+}
+
+.ProjectCard h3::after {
+	content: url("https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/m3/icon-expand.png");
+	margin-left: 5px;
+}
+
+.EditProjectPage,
+.AddProject,
+.AddTask,
+.SignupPage,
+.LoginPage {
+	width: 400px;
+	text-align: center;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	padding: 10px;
+	border-radius: 4px;
+	background-color: transparent !important;
+}
+
+.EditProjectPage {
+	background-color: rgb(239, 196, 88);
+}
+
+.SignupPage,
+.LoginPage {
+	background-color: rgb(139, 196, 139);
+	border: none;
+}
+
+.LoginPage {
+	background-color: rgb(139, 196, 139);
+	border: none;
+}
+
+.EditProjectPage form,
+.AddTask form,
+.AddProject form,
+.SignupPage form,
+.LoginPage form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.AddTask button,
+.AddProject button {
+	display: block;
+}
+
+.TaskCard {
+	background-color: #dfeef9;
+}

@@ -30,7 +30,7 @@ function HomeBetPage(props) {
 	let userId = user._id
 
 	useEffect(() => {
-		axios.get(`https://api.b365api.com/v3/bet365/prematch?token=99095-GEZxtGrJVsIYLq&FI=${matchId}`).then((matchsApi) => {
+		axios.get(`https://api.b365api.com/v3/bet365/prematch?token=100333-basbqm5dk2PGt7&FI=${matchId}`).then((matchsApi) => {
 			setMatchs(matchsApi.data)
 			setLoading(false)
 
@@ -102,7 +102,7 @@ function HomeBetPage(props) {
 			<>
 				<Navbar bg="" variant="dark" className="sub-navbar" expand="lg">
 					<Container>
-						<Nav className="me-auto">
+						<Nav className="me-auto subNavDet">
 							<Nav.Link
 								className="navInLeague2"
 								onClick={() => {
@@ -130,7 +130,7 @@ function HomeBetPage(props) {
 						</Nav>
 						<Nav className="nav-text-right">
 							<Nav className="nav-text-right"> Coins {userInLeague.coinsInLeague}</Nav>
-							<Nav className="nav-text-right"> {userLeague.name}</Nav>
+							<Nav className="nav-text-right2"> {userLeague.name}</Nav>
 						</Nav>
 					</Container>
 				</Navbar>

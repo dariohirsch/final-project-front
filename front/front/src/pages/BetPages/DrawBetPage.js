@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 import { AuthContext } from "../../context/auth.context"
 import { Nav, Navbar, Container } from "react-bootstrap"
 
-function AwayBetPage(props) {
+function DrawBetPage(props) {
 	const matchId = props.match.params.matchId
 	const leagueId = props.match.params.id
 	const matchTime = props.match.params.matchTime
@@ -20,7 +20,7 @@ function AwayBetPage(props) {
 	const { user } = useContext(AuthContext)
 	const [userLeague, setUserLeague] = useState("")
 
-	let awayCuote
+	let drawCuote
 	let namesMatch
 	let homeTeam
 	let awayTeam
@@ -52,14 +52,14 @@ function AwayBetPage(props) {
 		return <p>loading</p>
 	} else {
 		// homeCuote = matchs.results[0].main.sp.full_time_result.odds[0].odds
-		// drawCuote = matchs.results[0].main.sp.full_time_result.odds[1].odds
-		awayCuote = matchs.results[0].main.sp.full_time_result.odds[2].odds
+		drawCuote = matchs.results[0].main.sp.full_time_result.odds[1].odds
+		// awayCuote = matchs.results[0].main.sp.full_time_result.odds[2].odds
 		namesMatch = matchs.results[0].main.sp.half_time_full_time.odds[2].name
 
 		nameTeams = namesMatch.split(" - ", 2)
 		homeTeam = nameTeams[0]
 		awayTeam = nameTeams[1]
-		let coinsPotencials = coinsAmount * awayCuote
+		let coinsPotencials = coinsAmount * drawCuote
 		let coinsInLeague = userInLeague.coinsInLeague
 		let coinsInLeagueUpdate = coinsInLeague - coinsAmount
 		//console.log(`SOY COINS IN LEAGUE` , coinsInLeagueUpdate)
@@ -99,9 +99,9 @@ function AwayBetPage(props) {
 
 		return (
 			<>
-				<Navbar bg="" className="sub-navbar" variant="dark" expand="lg">
+				<Navbar bg="" variant="dark" className="sub-navbar" expand="lg">
 					<Container>
-						<Nav className="me-auto subNavDet">
+						<Nav className="me-auto">
 							<Nav.Link
 								className="navInLeague2"
 								onClick={() => {
@@ -129,20 +129,18 @@ function AwayBetPage(props) {
 						</Nav>
 						<Nav className="nav-text-right">
 							<Nav className="nav-text-right"> Coins {userInLeague.coinsInLeague}</Nav>
-							<Nav className="nav-text-right2"> {userLeague.name}</Nav>
+							<Nav className="nav-text-right"> {userLeague.name}</Nav>
 						</Nav>
 					</Container>
 				</Navbar>
+
 				<div className="singleMatch">
 					<h1>
 						{homeTeam} vs {awayTeam}
 					</h1>
-
 					{/* <Card style={{ width: "18rem" }}> */}
-
-					<h5>You are betting for: {awayTeam}</h5>
-
-					<p>Coute: {awayCuote}</p>
+					<h5>You are betting for: Draw</h5>
+					<p>Coute: {drawCuote}</p>
 					<form onSubmit={handleSubmitForm}>
 						{/* <input hidden name="league._id" value={league._id}></input> */}
 						<input type="number" name="coinsAmount" className="bet-input" value={coinsAmount} onChange={handleCoinsAmountChange} placeholder="coins to bet" />
@@ -169,4 +167,4 @@ function AwayBetPage(props) {
 	}
 }
 
-export default AwayBetPage
+export default DrawBetPage
