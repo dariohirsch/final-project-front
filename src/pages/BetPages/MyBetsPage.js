@@ -38,7 +38,7 @@ function MyBetsPage(props) {
 		<>
 			<Navbar bg="" className="sub-navbar" variant="dark" expand="lg">
 				<Container>
-					<Nav className="me-auto">
+					<Nav className="me-auto subNavDet">
 						<Nav.Link
 							className="navInLeague2"
 							onClick={() => {
@@ -66,7 +66,7 @@ function MyBetsPage(props) {
 					</Nav>
 					<Nav className="nav-text-right">
 						<Nav className="nav-text-right"> Coins {mybets.coinsInLeague}</Nav>
-						<Nav className="nav-text-right"> {userLeague.name}</Nav>
+						<Nav className="nav-text-right2"> {userLeague.name}</Nav>
 					</Nav>
 				</Container>
 			</Navbar>

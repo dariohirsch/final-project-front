@@ -483,6 +483,10 @@ home page */
 	outline: 0px;
 }
 
+.card-size {
+	width: 18rem;
+}
+
 @media (max-width: 600px) {
 	.home-page-cont {
 		display: flex;
@@ -582,5 +586,9 @@ home page */
 		display: flex !important;
 		justify-content: center;
 		margin-left: 3rem;
+	}
+
+	.card {
+		width: auto;
 	}
 }

@@ -82,9 +82,9 @@ function MatchesCompetitions(props) {
 				<div className="matcheslist col-6" style={{ overflow: "scroll", maxHeight: "80vh" }}>
 					{matches.map((match) => (
 						<div key={match.name} className="card card-bet cardStyle">
-							<Card border="" style={{ width: "18rem" }}>
+							<Card className="card-size">
 								<Card.Body>
-									<Card.Title>{match.league.name} </Card.Title>
+									{/* <Card.Title>{match.league.name} </Card.Title> */}
 									{/* <Card.Title>Match: </Card.Title> */}
 									<Card.Text className="cardd-text">{match.home.name}</Card.Text>
 									<Card.Text className="cardd-text">{match.away.name}</Card.Text>

@@ -17,23 +17,23 @@ function CompetitionsPage() {
 		<>
 			<div className=" competitionsContainer">
 				<Link to={`/competitions/${franceId}`}>
-					<img ClassName="fotosLigas" src={league1} alt="league1"></img>
+					<img className="fotosLigas" src={league1} alt="league1"></img>
 				</Link>
 
 				<Link to={`/competitions/${spainId}`}>
-					<img ClassName="fotosLigas" src={laliga} alt="laLiga"></img>
+					<img className="fotosLigas" src={laliga} alt="laLiga"></img>
 				</Link>
 
 				<Link to={`/competitions/${italyId}`}>
-					<img ClassName="fotosLigas" src={seriea} alt="seriaA"></img>
+					<img className="fotosLigas" src={seriea} alt="seriaA"></img>
 				</Link>
 
 				<Link to={`/competitions/${englandId}`}>
-					<img ClassName="fotosLigas" src={premier} alt="premier-league"></img>
+					<img className="fotosLigas" src={premier} alt="premier-league"></img>
 				</Link>
 
 				<Link to={`/competitions/${germanyId}`}>
-					<img ClassName="fotosLigas" src={bundesleague} alt="bundensliga"></img>
+					<img className="fotosLigas" src={bundesleague} alt="bundensliga"></img>
 				</Link>
 			</div>
 		</>

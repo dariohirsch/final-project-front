@@ -45,7 +45,7 @@ function CompetitionsBet(props) {
 		<>
 			<Navbar bg="" className="sub-navbar" variant="dark" expand="lg">
 				<Container>
-					<Nav className="me-auto">
+					<Nav className="me-auto subNavDet">
 						<Nav.Link
 							className="navInLeague2"
 							onClick={() => {
@@ -73,29 +73,29 @@ function CompetitionsBet(props) {
 					</Nav>
 					<Nav className="nav-text-right">
 						<Nav className="nav-text-right"> Coins {userInLeague.coinsInLeague}</Nav>
-						<Nav className="nav-text-right"> {userLeague.name}</Nav>
+						<Nav className="nav-text-right2"> {userLeague.name}</Nav>
 					</Nav>
 				</Container>
 			</Navbar>
 			<div className=" competitionsContainer">
 				<Link to={`/competitions/bet/${leagueId}/${franceId}`}>
-					<img ClassName="fotosLigas" src={league1} alt="league1"></img>
+					<img className="fotosLigas" src={league1} alt="league1"></img>
 				</Link>
 
 				<Link to={`/competitions/bet/${leagueId}/${spainId}`}>
-					<img ClassName="fotosLigas" src={laliga} alt="laLiga"></img>
+					<img className="fotosLigas" src={laliga} alt="laLiga"></img>
 				</Link>
 
 				<Link to={`/competitions/bet/${leagueId}/${italyId}`}>
-					<img ClassName="fotosLigas" src={seriea} alt="seriaA"></img>
+					<img className="fotosLigas" src={seriea} alt="seriaA"></img>
 				</Link>
 
 				<Link to={`/competitions/bet/${leagueId}/${englandId}`}>
-					<img ClassName="fotosLigas" src={premier} alt="premier-league"></img>
+					<img className="fotosLigas" src={premier} alt="premier-league"></img>
 				</Link>
 
 				<Link to={`/competitions/bet/${leagueId}/${germanyId}`}>
-					<img ClassName="fotosLigas" src={bundesleague} alt="bundensliga"></img>
+					<img className="fotosLigas" src={bundesleague} alt="bundensliga"></img>
 				</Link>
 			</div>
 		</>

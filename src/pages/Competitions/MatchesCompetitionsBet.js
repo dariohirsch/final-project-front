@@ -103,7 +103,7 @@ function MatchesCompetitionsBet(props) {
 			<>
 				<Navbar bg="" className="sub-navbar" variant="dark" expand="lg">
 					<Container>
-						<Nav className="me-auto">
+						<Nav className="me-auto subNavDet">
 							<Nav.Link
 								className="navInLeague2"
 								onClick={() => {
@@ -131,7 +131,7 @@ function MatchesCompetitionsBet(props) {
 						</Nav>
 						<Nav className="nav-text-right">
 							<Nav className="nav-text-right"> Coins {userInLeague.coinsInLeague}</Nav>
-							<Nav className="nav-text-right"> {userLeague.name}</Nav>
+							<Nav className="nav-text-right2"> {userLeague.name}</Nav>
 						</Nav>
 					</Container>
 				</Navbar>
@@ -139,9 +139,9 @@ function MatchesCompetitionsBet(props) {
 					<div className="matcheslist col-6" style={{ overflow: "scroll", maxHeight: "80vh" }}>
 						{matches.map((match) => (
 							<div key={match.name} className="card card-bet cardStyle">
-								<Card border="" style={{ width: "18rem" }}>
+								<Card className="card-size">
 									<Card.Body>
-										<Card.Title>{match.league.name}: </Card.Title>
+										{/* <Card.Title>{match.league.name}: </Card.Title> */}
 										{/* <Card.Title>Match: </Card.Title> */}
 										<Card.Text className="cardd-text">{match.home.name}</Card.Text>
 										<Card.Text className="cardd-text">{match.away.name}</Card.Text>
