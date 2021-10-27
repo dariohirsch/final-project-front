@@ -22,6 +22,7 @@ function AuthProviderWrapper(props) {
 			axios
 				.get(`${API_URL}/auth/verify`, { headers: { Authorization: `Bearer ${storedToken}` } })
 				.then((response) => {
+					// console.log("response", response)
 					// If the server verifies that JWT token is valid  ✅
 					// const user = response.data
 					// setUser(user)
@@ -31,7 +32,7 @@ function AuthProviderWrapper(props) {
 				.catch((error) => {
 					// If the server sends an error response (invalid token) ❌
 					setIsLoggedIn(false)
-					console.log("verify null")
+
 					setUser(null)
 					setIsLoading(false)
 				})
@@ -55,11 +56,11 @@ function AuthProviderWrapper(props) {
 		verifyStoredToken()
 
 		/* 
-      After saving the token in the localStorage we call the
-      function `verifyStoredToken` which sends a new request to the
-      server to verify the token. Upon receiving the response the function 
-      `verifyStoredToken` updates the state variables `isLoggedIn`, `user` and `isLoading`
-    */
+		  After saving the token in the localStorage we call the
+		  function `verifyStoredToken` which sends a new request to the
+		  server to verify the token. Upon receiving the response the function 
+		  `verifyStoredToken` updates the state variables `isLoggedIn`, `user` and `isLoading`
+		*/
 	}
 
 	const logOutUser = () => {
@@ -74,7 +75,6 @@ function AuthProviderWrapper(props) {
 
 	useEffect(() => {
 		verifyStoredToken()
-		// getUserInLeague()
 	}, [])
 
 	return <AuthContext.Provider value={{ isLoggedIn, isLoading, user, logInUser, logOutUser, setUser }}>{props.children}</AuthContext.Provider>

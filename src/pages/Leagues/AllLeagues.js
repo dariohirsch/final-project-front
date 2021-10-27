@@ -7,8 +7,10 @@ import axios from "axios"
 function AllLeagues() {
 	const API_URL = process.env.REACT_APP_API_URL
 	const [leagues, setLeagues] = useState([])
+	const [leaguesSearch, setLeaguesSearch] = useState([])
 	const { isLoggedIn, user, setUser } = useContext(AuthContext)
 	const [accessCode, setAccessCode] = useState("")
+
 	const history = useHistory()
 
 	useEffect(() => {
@@ -19,7 +21,11 @@ function AllLeagues() {
 		axios
 			.get(`${API_URL}/leagues`)
 
-			.then((response) => setLeagues(response.data))
+			.then((response) => {
+				setLeagues(response.data)
+				setLeaguesSearch(response.data)
+			})
+
 			.catch((error) => console.log(error))
 	}
 
@@ -46,9 +52,31 @@ function AllLeagues() {
 			})
 	}
 
+	let newArray = leaguesSearch
+	console.log("new array 1", newArray)
+	const filterLeagues = (search) => {
+		console.log(search)
+		if (search === "") {
+			console.log("search vacio")
+
+			setLeagues(newArray)
+			console.log("new array 2", newArray)
+		} else {
+			let searchResult = newArray.filter((leagues) => leagues.name.toLowerCase().includes(search.toLowerCase()))
+			setLeagues(searchResult)
+		}
+	}
+	const handleChange = (e) => {
+		filterLeagues(e.target.value)
+	}
+
 	return (
 		<div>
 			<hr />
+			<form>
+				<label>Search league</label>
+				<input type="text" onChange={handleChange} value={undefined}></input>
+			</form>
 			<div className="leagues-container">
 				{leagues.map((league) => (
 					<>

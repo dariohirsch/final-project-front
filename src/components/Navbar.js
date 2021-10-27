@@ -6,8 +6,9 @@ import { useHistory } from "react-router-dom"
 function Navigation() {
 	// Subscribe to the AuthContext to gain access to
 	// the values from AuthContext.Provider `value` prop
-	const { isLoggedIn, user, logOutUser } = useContext(AuthContext)
+	const { isLoggedIn, user, logOutUser, logInUser } = useContext(AuthContext)
 	const history = useHistory()
+	console.log("user", user)
 
 	return (
 		<Navbar collapseOnSelect expand="lg" bg="" className="principal-nav" variant="dark">
