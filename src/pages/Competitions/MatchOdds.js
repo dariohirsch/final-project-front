@@ -14,7 +14,7 @@ function MatchOdds(props) {
 	const { isLoggedIn, isLoading } = useContext(AuthContext)
 
 	useEffect(() => {
-		axios.get(`https://api.b365api.com/v3/bet365/prematch?token=100333-basbqm5dk2PGt7&FI=${matchId}`).then((matchsApi) => {
+		axios.get(`https://api.b365api.com/v3/bet365/prematch?token=125004-P7GlffqyzXRIE3&FI=${matchId}`).then((matchsApi) => {
 			setMatchs(matchsApi.data)
 			setLoading(false)
 		})

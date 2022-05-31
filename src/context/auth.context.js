@@ -42,25 +42,12 @@ function AuthProviderWrapper(props) {
 		}
 	}
 
-	// setTimeOut(() => {const getUserInLeague = () => {
-	// 	let userToSearch = user
-	// 	console.log("usertosearch", userToSearch)
-	// 	axios.post(`${API_URL}/get-userinleague`, { userToSearch }).then((response) => console.log(response))
-	// },1000)
-
 	const logInUser = (token) => {
 		console.log("loginuser", token)
 		localStorage.setItem("authToken", token.token)
 
 		setUser(token.user)
 		verifyStoredToken()
-
-		/* 
-		  After saving the token in the localStorage we call the
-		  function `verifyStoredToken` which sends a new request to the
-		  server to verify the token. Upon receiving the response the function 
-		  `verifyStoredToken` updates the state variables `isLoggedIn`, `user` and `isLoading`
-		*/
 	}
 
 	const logOutUser = () => {
